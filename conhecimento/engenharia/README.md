@@ -55,3 +55,35 @@ Os agentes utilizam esse conhecimento para tomar decisões e executar suas respo
 O objetivo da engenharia não é produzir código da forma mais rápida possível.
 
 O objetivo é produzir e evoluir software que seja adequado ao problema, compreensível, verificável, seguro, operável e sustentável dentro do contexto.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `implementation`
+- `refactoring`
+- `coding-standards`
+- `unit-testing`
+- `technical-debt-management`
+- `error-handling`
+- `dependency-management`
+- `version-control-and-change-management`
+- `api-design`
+
+### Agentes relacionados
+
+- `software-engineer`
+- `solution-architect`
+- `data-engineer`
+- `test-engineer`
+- `security-engineer`
+- `devops-engineer`
+
+### Workflows relacionados
+
+- `04-architecture`
+- `05-development`
+- `06-quality`
+- `07-delivery`

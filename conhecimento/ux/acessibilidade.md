@@ -120,3 +120,21 @@ Acessibilidade deve ser considerada em:
 - revisão.
 
 Ferramentas automatizadas podem identificar alguns problemas, mas não substituem avaliação humana e testes adequados.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `accessibility-design`
+- `interaction-design`
+
+### Agentes relacionados
+
+- `ux-designer`
+
+### Workflows relacionados
+
+- `03-ux-design`
+- `05-development`

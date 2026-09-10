@@ -48,3 +48,22 @@ A visão pode conter aspirações, mas decisões sobre o caminho devem ser conti
 ## Resultado esperado
 
 A visão deve funcionar como referência para decisões sem transformar um plano inicial em compromisso imutável.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `product-definition`
+- `product-discovery`
+- `market-research`
+
+### Agentes relacionados
+
+- `product-strategist`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `02-product-definition`

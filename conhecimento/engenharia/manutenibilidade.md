@@ -1,7 +1,7 @@
 ---
 title: Manutenibilidade
 description: Princípios para manter o software compreensível e modificável ao longo de seu ciclo de vida.
-type: principle
+type: guide
 status: active
 scope: squad
 tags:
@@ -56,3 +56,23 @@ CUSTO DE MUDANÇA
 ## Resultado esperado
 
 O software deve permanecer suficientemente compreensível e modificável à medida que evolui.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `coding-standards`
+- `refactoring`
+- `maintenance-strategy`
+- `technical-debt-management`
+
+### Agentes relacionados
+
+- `software-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `08-evolution`

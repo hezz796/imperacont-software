@@ -8,135 +8,155 @@ version: 1
 
 ## Objetivo
 
-Transformar uma ideia, necessidade ou problema inicial em entendimento suficientemente sólido para decidir se existe uma oportunidade relevante a ser explorada.
+Compreender o problema antes de definir a solução.
 
-## Princípio
+A discovery deve produzir entendimento suficiente sobre:
 
-Não começar pela tecnologia ou pela solução.
+- contexto;
+- problema;
+- usuários;
+- necessidades;
+- evidências;
+- oportunidades;
+- hipóteses;
+- restrições;
+- riscos;
+- incertezas.
 
-A discovery deve responder:
+Não iniciar implementação durante a discovery.
 
-- qual problema existe;
-- para quem;
-- em qual contexto;
-- qual evidência existe;
-- qual oportunidade pode existir;
-- quais hipóteses ainda precisam ser validadas.
+---
 
 ## Entrada
 
-Pode receber:
+A discovery pode receber:
 
 - ideia;
 - problema percebido;
+- oportunidade;
 - solicitação de usuário;
-- oportunidade de negócio;
-- hipótese;
-- necessidade operacional;
-- mudança de contexto.
+- mudança de contexto;
+- feedback;
+- incidente;
+- informação de negócio.
 
-## Agente principal
+Antes de iniciar, verificar se existem informações mínimas suficientes para compreender o objetivo da investigação.
 
-`@squad-lead`
+---
 
-## Agentes participantes
+## Memória
 
-- `@product-strategist`
-- `@business-analyst`
-- `@ux-researcher`
-- `@reviewer`
+Antes de iniciar a investigação, consultar seletivamente:
 
-## Skills
+```text
+memoria/contexto/
+memoria/decisoes/
+memoria/problemas/
+memoria/riscos/
+memoria/aprendizados/
+```
 
-- `brainstorming`
-- `problem-framing`
-- `opportunity-analysis`
-- `hypothesis-validation`
-- `market-research`
-- `product-discovery`
+A consulta deve buscar apenas memórias relacionadas ao problema, domínio, usuário, projeto ou contexto atual.
+
+Verificar:
+
+- status;
+- data;
+- confiança;
+- contexto;
+- evidências;
+- decisões posteriores.
+
+Memórias antigas não devem ser tratadas automaticamente como fatos atuais.
+
+---
 
 ## Etapas
 
-### 1. Enquadramento inicial
+### 1. Compreender o contexto
 
 Identificar:
 
-- contexto;
-- problema percebido;
-- origem da demanda;
-- público afetado;
-- objetivo inicial.
+- contexto atual;
+- objetivo;
+- origem da solicitação;
+- partes interessadas;
+- restrições conhecidas;
+- informações já disponíveis.
 
-### 2. Problem framing
+### 2. Investigar o problema
 
-Separar:
+Determinar:
 
-- problema;
-- sintoma;
-- causa presumida;
-- solução presumida;
-- restrições conhecidas.
+- qual problema está sendo observado;
+- quem é afetado;
+- em qual contexto;
+- qual impacto existe;
+- quais evidências sustentam o problema.
 
-### 3. Investigação
+Não confundir sintoma com causa.
 
-Buscar evidências relevantes sobre:
+### 3. Identificar usuários
+
+Investigar:
 
 - usuários;
-- contexto;
-- processo atual;
-- alternativas existentes;
-- mercado;
-- restrições;
-- necessidades.
+- necessidades;
+- comportamentos;
+- objetivos;
+- dificuldades;
+- contexto de uso.
 
-### 4. Oportunidade
+### 4. Identificar oportunidades
 
-Avaliar:
+Explorar:
 
-- relevância;
-- frequência;
-- impacto;
-- público;
+- oportunidades;
+- necessidades não atendidas;
 - alternativas;
-- oportunidade potencial.
+- possibilidades de intervenção.
 
-### 5. Hipóteses
+Não assumir que uma solução proposta pelo solicitante seja necessariamente a solução adequada.
 
-Registrar:
+### 5. Formular hipóteses
 
-- hipótese;
-- evidência existente;
-- grau de incerteza;
-- método de validação;
-- resultado esperado.
+Registrar hipóteses explicitamente.
 
-### 6. Review
+Uma hipótese deve ser diferenciada de:
 
-`@reviewer` verifica:
+- fato;
+- decisão;
+- aprendizado;
+- opinião.
 
-- premissas;
-- evidências;
-- lacunas;
-- conclusões;
-- riscos de viés;
-- hipóteses não comprovadas.
+### 6. Avaliar evidências
 
-## Gate
+Classificar as informações conforme sua sustentação.
 
-Discovery pode avançar quando:
+Identificar:
 
-- o problema está suficientemente definido;
-- o público está identificado;
-- as principais evidências foram registradas;
-- hipóteses relevantes estão explícitas;
-- incertezas importantes estão conhecidas;
-- existe base suficiente para decisão de produto.
+- evidências fortes;
+- evidências fracas;
+- informações desconhecidas;
+- contradições;
+- lacunas.
 
-## Saída
+### 7. Identificar riscos
 
-Produzir:
+Registrar riscos relevantes relacionados a:
 
-- problem statement;
+- problema;
+- usuários;
+- negócio;
+- contexto;
+- validação;
+- premissas.
+
+### 8. Consolidar discovery
+
+Consolidar:
+
+- problema;
 - contexto;
 - usuários;
 - evidências;
@@ -144,19 +164,116 @@ Produzir:
 - hipóteses;
 - riscos;
 - incertezas;
+- perguntas abertas;
 - recomendação.
 
-## Decisão
+---
 
-Possíveis resultados:
+## Revisão
 
-- `PROSSEGUIR`
-- `VALIDAR MAIS`
-- `REFORMULAR PROBLEMA`
-- `ENCERRAR`
+Utilizar `@reviewer` quando:
 
-## Regra de bloqueio
+- houver conflito entre evidências;
+- houver risco elevado;
+- houver hipótese crítica;
+- houver conclusão controversa;
+- houver possibilidade de confundir fato com inferência;
+- houver impacto significativo na definição futura do produto.
 
-Não iniciar arquitetura ou implementação apenas porque uma solução foi sugerida.
+---
 
-A squad deve primeiro estabelecer entendimento suficiente do problema.
+## Memórias candidatas
+
+Ao finalizar a discovery, avaliar se existem informações que merecem ser preservadas.
+
+Podem ser candidatas:
+
+- contexto persistente descoberto;
+- problema recorrente;
+- risco relevante;
+- aprendizado comprovado;
+- decisão tomada durante a discovery;
+- evento histórico relevante.
+
+Não registrar automaticamente:
+
+- hipóteses não validadas;
+- opiniões;
+- especulações;
+- informações temporárias;
+- observações sem impacto futuro.
+
+As candidatas devem ser apresentadas ao `@squad-lead` para avaliação e eventual consolidação.
+
+---
+
+## Gate
+
+A discovery pode avançar quando:
+
+- o problema estiver suficientemente compreendido;
+- os usuários relevantes estiverem identificados;
+- houver evidências adequadas;
+- hipóteses críticas estiverem explicitadas;
+- riscos relevantes estiverem identificados;
+- incertezas importantes estiverem registradas;
+- não houver confusão entre problema e solução;
+- o resultado tiver sido revisado quando necessário.
+
+Resultados possíveis:
+
+```text
+APROVADO
+APROVADO COM PENDÊNCIAS CONTROLADAS
+RETORNAR PARA INVESTIGAÇÃO
+BLOQUEADO
+ENCERRADO
+```
+
+---
+
+## Saída
+
+Produzir:
+
+- contexto;
+- problema;
+- usuários;
+- necessidades;
+- evidências;
+- oportunidades;
+- hipóteses;
+- riscos;
+- incertezas;
+- perguntas abertas;
+- recomendação;
+- candidatas a memória;
+- resultado do gate.
+
+---
+
+## Próximo estado
+
+Quando aprovado, o trabalho pode avançar para:
+
+```text
+Discovery
+   ↓
+Product Definition
+```
+
+Quando houver incerteza relevante sobre o problema:
+
+```text
+Discovery
+   ↓
+investigação adicional
+```
+
+Quando o problema não justificar continuidade:
+
+```text
+Discovery
+   ↓
+Encerramento
+```

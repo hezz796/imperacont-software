@@ -8,124 +8,179 @@ version: 1
 
 ## Objetivo
 
-Produzir evidências suficientes para determinar se uma mudança ou release apresenta qualidade adequada para avançar.
+Verificar se o produto atende aos requisitos, critérios de aceitação e atributos de qualidade relevantes antes da liberação.
 
-## Princípio
-
-Qualidade é responsabilidade do produto inteiro e deve ser avaliada com base em risco.
+---
 
 ## Entrada
 
-- software implementado;
+Utilizar:
+
 - requisitos;
+- user stories;
 - critérios de aceitação;
 - arquitetura;
+- implementação;
 - riscos;
-- estratégia de testes.
+- estratégia de testes;
+- decisões relevantes.
 
-## Agente principal
+---
 
-`@test-engineer`
+## Memória
 
-## Agentes participantes
+Consultar:
 
-- `@security-engineer`
-- `@software-engineer`
-- `@reviewer`
+```text
+memoria/decisoes/
+memoria/aprendizados/
+memoria/problemas/
+memoria/riscos/
+```
 
-## Skills
+Priorizar:
 
-- `test-strategy`
-- `test-design`
-- `unit-testing`
-- `integration-testing`
-- `system-testing`
-- `acceptance-testing`
-- `regression-testing`
-- `performance-testing`
-- `reliability-testing`
-- `security-testing`
-- `quality-gates`
+- falhas recorrentes;
+- incidentes anteriores;
+- riscos conhecidos;
+- decisões de qualidade;
+- aprendizados de testes;
+- problemas históricos relevantes.
+
+Memórias devem orientar a investigação, não substituir evidência atual.
+
+---
 
 ## Etapas
 
-### 1. Estratégia
+### 1. Estratégia de qualidade
 
-Confirmar:
+Definir cobertura adequada ao risco.
 
-- escopo;
-- riscos;
-- níveis de teste;
-- critérios.
+### 2. Testes
 
-### 2. Test design
-
-Definir cenários relevantes.
-
-### 3. Testes funcionais
-
-Executar conforme o risco:
+Executar quando aplicável:
 
 - unitários;
 - integração;
 - sistema;
 - aceitação;
-- regressão.
-
-### 4. Testes não funcionais
-
-Quando aplicável:
-
+- regressão;
 - desempenho;
 - confiabilidade;
-- compatibilidade;
 - segurança.
 
-### 5. Defeitos
+### 3. Análise de resultados
 
-Registrar:
+Classificar:
 
-- comportamento;
-- esperado;
-- observado;
-- evidência;
-- impacto;
-- severidade.
+- aprovado;
+- falha;
+- defeito;
+- risco;
+- inconsistência;
+- limitação;
+- evidência insuficiente.
 
-### 6. Revalidação
+### 4. Segurança
 
-Após correções, executar os testes necessários novamente.
+Avaliar riscos de segurança relevantes.
 
-### 7. Quality gate
+### 5. Regressão
 
-Avaliar evidências e riscos remanescentes.
+Verificar impactos sobre funcionalidades existentes.
+
+### 6. Revisão
+
+Submeter resultados críticos a revisão independente.
+
+---
+
+## Aprendizados e memória
+
+Avaliar se os resultados produziram:
+
+- novo aprendizado;
+- padrão de falha recorrente;
+- risco persistente;
+- problema estrutural;
+- decisão relevante;
+- informação histórica importante.
+
+Uma falha de teste não é automaticamente um aprendizado.
+
+A transformação deve seguir:
+
+```text
+RESULTADO
+    ↓
+ANÁLISE
+    ↓
+EVIDÊNCIA
+    ↓
+APRENDIZADO OU PROBLEMA
+    ↓
+CANDIDATA A MEMÓRIA
+```
+
+As candidatas são encaminhadas ao `@squad-lead`.
+
+---
 
 ## Gate
 
-Considerar:
+A liberação somente pode avançar quando:
 
-- requisitos críticos;
-- critérios de aceitação;
-- defeitos bloqueadores;
-- segurança;
-- desempenho relevante;
-- confiabilidade;
-- riscos conhecidos.
+- testes necessários forem executados;
+- defeitos críticos estiverem resolvidos ou explicitamente aceitos;
+- riscos críticos estiverem controlados;
+- requisitos relevantes forem atendidos;
+- segurança estiver adequada ao risco;
+- regressão estiver aceitável;
+- evidências forem suficientes.
+
+Resultado:
+
+```text
+APROVADO
+APROVADO COM PENDÊNCIAS CONTROLADAS
+RETORNAR PARA DEVELOPMENT
+RETORNAR PARA ARCHITECTURE
+BLOQUEADO
+```
+
+---
 
 ## Saída
 
 Produzir:
 
-- resultados de testes;
+- estratégia;
+- testes;
+- resultados;
+- falhas;
 - defeitos;
+- severidade;
 - evidências;
-- cobertura relevante;
 - riscos;
-- decisão de qualidade.
+- aprendizados;
+- candidatas a memória;
+- resultado do gate.
 
-## Decisão
+---
 
-- `APROVADO`
-- `APROVADO COM RESSALVAS`
-- `REPROVADO`
-- `REQUER NOVOS TESTES`
+## Próximo estado
+
+```text
+Quality
+   ↓
+Delivery
+```
+
+Quando houver falha que exija correção:
+
+```text
+Quality
+   ↓
+Development
+```

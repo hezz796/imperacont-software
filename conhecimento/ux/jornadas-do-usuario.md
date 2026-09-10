@@ -114,3 +114,23 @@ Uma jornada pode revelar dependências entre:
 - organizações.
 
 Por isso, jornadas podem fornecer informações relevantes para decisões arquiteturais.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `user-journeys`
+- `ux-research`
+- `information-architecture`
+
+### Agentes relacionados
+
+- `ux-designer`
+- `ux-researcher`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `03-ux-design`

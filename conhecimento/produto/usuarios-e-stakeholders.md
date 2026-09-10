@@ -71,3 +71,23 @@ Não presumir que:
 ## Resultado esperado
 
 A squad deve compreender quem é afetado pelas decisões e considerar suas necessidades de maneira proporcional à relevância do contexto.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `ux-research`
+- `user-journeys`
+- `market-research`
+
+### Agentes relacionados
+
+- `ux-researcher`
+- `business-analyst`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `03-ux-design`

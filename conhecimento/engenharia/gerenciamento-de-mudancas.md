@@ -1,7 +1,7 @@
 ---
 title: Gerenciamento de mudanças
 description: Princípios para compreender, controlar e comunicar mudanças em produtos e sistemas.
-type: principle
+type: guide
 status: active
 scope: squad
 tags:
@@ -70,3 +70,23 @@ RESULTADO
 ## Resultado esperado
 
 A squad deve conhecer suficientemente uma mudança para decidir como implementá-la, verificá-la e entregá-la com risco controlado.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `change-management`
+- `version-control-and-change-management`
+- `rollback-and-recovery`
+
+### Agentes relacionados
+
+- `squad-lead`
+- `devops-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `07-delivery`

@@ -66,3 +66,23 @@ Quanto maiores esses fatores, maior deve ser o esforço de validação.
 ## Resultado esperado
 
 A squad deve tornar a incerteza visível em vez de escondê-la atrás de afirmações aparentemente definitivas.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `hypothesis-validation`
+- `product-discovery`
+- `ux-research`
+- `root-cause-analysis`
+
+### Agentes relacionados
+
+- `reviewer`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `08-evolution`

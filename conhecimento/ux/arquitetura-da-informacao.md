@@ -95,3 +95,21 @@ Arquiteturas de informação podem mudar conforme:
 - novos canais aparecem.
 
 Uma arquitetura deve ser compreensível, mas também suficientemente flexível para evoluir.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `information-architecture`
+- `interaction-design`
+- `user-journeys`
+
+### Agentes relacionados
+
+- `ux-designer`
+
+### Workflows relacionados
+
+- `03-ux-design`

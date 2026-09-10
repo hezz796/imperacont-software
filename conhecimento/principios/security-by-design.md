@@ -56,3 +56,24 @@ RISCO
 ## Resultado esperado
 
 A segurança deve estar integrada ao produto, à arquitetura, à implementação, aos testes e à operação.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `security-design`
+- `security-testing`
+- `architecture-design`
+
+### Agentes relacionados
+
+- `security-engineer`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `04-architecture`
+- `05-development`
+- `06-quality`

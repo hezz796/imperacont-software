@@ -1,7 +1,7 @@
 ---
 title: Engenharia incremental
 description: Princípios para construir e evoluir software por meio de mudanças pequenas, verificáveis e progressivas.
-type: principle
+type: guide
 status: active
 scope: squad
 tags:
@@ -55,3 +55,24 @@ Quando uma mudança puder ser dividida sem prejudicar o objetivo, deve-se consid
 ## Resultado esperado
 
 A squad mantém controle sobre a evolução do software em vez de depender de grandes mudanças difíceis de verificar.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `implementation`
+- `refactoring`
+- `regression-testing`
+- `version-control-and-change-management`
+
+### Agentes relacionados
+
+- `software-engineer`
+- `test-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `06-quality`

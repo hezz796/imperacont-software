@@ -111,3 +111,23 @@ quanto:
 - abstração prematura.
 
 A maturidade está em criar padrões reutilizáveis quando existe evidência suficiente de recorrência e valor.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `design-system-thinking`
+- `interaction-design`
+- `implementation`
+
+### Agentes relacionados
+
+- `ux-designer`
+- `software-engineer`
+
+### Workflows relacionados
+
+- `03-ux-design`
+- `05-development`

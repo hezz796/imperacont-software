@@ -48,3 +48,23 @@ Perguntas de qualidade devem surgir antes da implementação:
 ## Resultado esperado
 
 Qualidade deve ser uma propriedade construída ao longo do ciclo de vida e não uma etapa final de inspeção.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `test-strategy`
+- `test-design`
+- `quality-gates`
+
+### Agentes relacionados
+
+- `test-engineer`
+
+### Workflows relacionados
+
+- `04-architecture`
+- `05-development`
+- `06-quality`

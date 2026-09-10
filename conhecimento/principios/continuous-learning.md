@@ -68,3 +68,17 @@ Aprendizados relevantes devem ser transformados, quando apropriado, em:
 ## Resultado esperado
 
 A squad deve tornar-se progressivamente mais eficaz com base em evidências reais, e não apenas repetir práticas por hábito.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `learning-loop`
+- `continuous-improvement`
+- `feedback-management`
+
+### Workflows relacionados
+
+- `08-evolution`

@@ -1,7 +1,7 @@
 ---
 title: Evolução do produto
 description: Princípios para transformar evidências, feedback e mudanças de contexto em decisões de evolução do produto.
-type: principle
+type: guide
 status: active
 scope: squad
 tags:
@@ -76,3 +76,22 @@ EVOLUIR
 ## Resultado esperado
 
 Cada ciclo de evolução deve aumentar a compreensão sobre o produto e melhorar as decisões futuras.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `feedback-management`
+- `product-analytics`
+- `evolution-prioritization`
+- `post-release-analysis`
+
+### Agentes relacionados
+
+- `product-strategist`
+
+### Workflows relacionados
+
+- `08-evolution`

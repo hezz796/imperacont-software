@@ -55,3 +55,23 @@ Ao analisar um problema, considerar:
 ## Resultado esperado
 
 A squad deve evitar transformar imediatamente uma solução sugerida em requisito sem compreender primeiro o problema que a solução pretende resolver.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `problem-framing`
+- `opportunity-analysis`
+- `product-discovery`
+
+### Agentes relacionados
+
+- `product-strategist`
+- `business-analyst`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `02-product-definition`

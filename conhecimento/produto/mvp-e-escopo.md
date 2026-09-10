@@ -49,3 +49,22 @@ O escopo deve distinguir:
 ## Resultado esperado
 
 O escopo deve ser suficiente para alcançar o objetivo da etapa sem carregar complexidade desnecessária para etapas futuras.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `product-definition`
+- `backlog-management`
+- `hypothesis-validation`
+
+### Agentes relacionados
+
+- `product-strategist`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `02-product-definition`

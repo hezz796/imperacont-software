@@ -56,3 +56,26 @@ O objetivo é utilizar o esforço certo no lugar certo.
 ## Resultado esperado
 
 A squad deve concentrar seus mecanismos de controle onde um erro teria maior consequência.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `test-strategy`
+- `security-design`
+- `technical-decisions`
+- `quality-gates`
+
+### Agentes relacionados
+
+- `squad-lead`
+- `reviewer`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `04-architecture`
+- `06-quality`
+- `07-delivery`

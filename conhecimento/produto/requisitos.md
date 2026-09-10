@@ -65,3 +65,22 @@ A decisão tecnológica pode ser tratada posteriormente pela arquitetura.
 ## Resultado esperado
 
 Requisitos devem permitir que produto, UX, arquitetura, desenvolvimento e qualidade compartilhem uma compreensão suficientemente comum do que precisa ser alcançado.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `requirements-engineering`
+- `user-stories`
+- `acceptance-testing`
+
+### Agentes relacionados
+
+- `business-analyst`
+
+### Workflows relacionados
+
+- `02-product-definition`
+- `06-quality`

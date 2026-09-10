@@ -1,7 +1,7 @@
 ---
 title: Modularidade
 description: Princípios para dividir software em partes compreensíveis, coesas e com responsabilidades bem definidas.
-type: principle
+type: guide
 status: active
 scope: squad
 tags:
@@ -61,3 +61,23 @@ A existência de um módulo deve possuir uma justificativa relacionada à compre
 ## Resultado esperado
 
 O sistema deve possuir fronteiras que reduzam a complexidade em vez de apenas distribuí-la entre vários componentes.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `architecture-design`
+- `implementation`
+- `refactoring`
+
+### Agentes relacionados
+
+- `solution-architect`
+- `software-engineer`
+
+### Workflows relacionados
+
+- `04-architecture`
+- `05-development`

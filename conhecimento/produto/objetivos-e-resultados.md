@@ -61,3 +61,21 @@ Ao definir uma iniciativa, procurar identificar:
 ## Resultado esperado
 
 O produto deve ser avaliado não apenas pelo que foi entregue, mas pelo efeito produzido.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `product-definition`
+- `product-metrics`
+
+### Agentes relacionados
+
+- `product-strategist`
+
+### Workflows relacionados
+
+- `02-product-definition`
+- `08-evolution`

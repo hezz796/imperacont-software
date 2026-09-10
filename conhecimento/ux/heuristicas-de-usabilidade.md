@@ -94,3 +94,22 @@ Heurísticas podem complementar:
 - controle de qualidade.
 
 Seu valor principal está em revelar riscos de experiência antes ou durante a validação.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `interaction-design`
+- `ux-research`
+
+### Agentes relacionados
+
+- `ux-designer`
+- `ux-researcher`
+
+### Workflows relacionados
+
+- `03-ux-design`
+- `06-quality`

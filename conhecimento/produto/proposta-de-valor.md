@@ -49,3 +49,22 @@ Uma proposta de valor é uma hipótese até que existam evidências suficientes 
 ## Resultado esperado
 
 A squad deve evitar justificar um produto apenas pela quantidade de funcionalidades disponibilizadas.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `product-definition`
+- `product-discovery`
+- `market-research`
+
+### Agentes relacionados
+
+- `product-strategist`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `02-product-definition`

@@ -8,159 +8,252 @@ version: 1
 
 ## Objetivo
 
-Definir uma arquitetura capaz de atender aos requisitos e atributos de qualidade sem antecipar tecnologias sem justificativa.
+Definir a arquitetura da solução a partir de:
 
-## Princípio
+- produto;
+- requisitos;
+- UX;
+- domínio;
+- riscos;
+- atributos de qualidade;
+- restrições;
+- operação;
+- segurança;
+- dados;
+- integrações.
 
-Arquitetura deve responder às necessidades do produto antes de escolher ferramentas específicas.
+A arquitetura deve permanecer tecnológica e conceitualmente justificada.
+
+---
 
 ## Entrada
 
+Utilizar:
+
+- definição do produto;
 - requisitos;
-- user stories;
-- critérios de aceitação;
+- regras de negócio;
 - UX;
-- restrições;
+- critérios de aceitação;
 - riscos;
+- restrições;
 - atributos de qualidade.
 
-## Agente principal
+---
 
-`@solution-architect`
+## Memória
 
-## Agentes participantes
+Antes das decisões arquiteturais, consultar:
 
-- `@data-engineer`
-- `@security-engineer`
-- `@devops-engineer`
-- `@business-analyst`
-- `@reviewer`
+```text
+memoria/decisoes/
+memoria/aprendizados/
+memoria/riscos/
+memoria/problemas/
+memoria/contexto/
+```
 
-## Skills
+Pesquisar especialmente:
 
-- `architecture-design`
-- `domain-modeling`
-- `data-modeling`
-- `api-design`
-- `integration-design`
-- `security-design`
-- `technical-decisions`
-- `technical-debt-management`
+- decisões arquiteturais anteriores;
+- decisões técnicas;
+- problemas recorrentes;
+- dívida técnica relevante;
+- incidentes;
+- aprendizados de implementação;
+- riscos operacionais;
+- restrições persistentes.
+
+Uma decisão anterior não deve ser repetida apenas por tradição.
+
+Avaliar se:
+
+```text
+CONTEXTO ATUAL
++
+EVIDÊNCIA
++
+RISCO
++
+CUSTO
+```
+
+continuam justificando a decisão.
+
+---
 
 ## Etapas
 
 ### 1. Contexto arquitetural
 
-Identificar:
+Estabelecer:
 
+- sistema;
+- usuários;
+- ambiente;
 - fronteiras;
-- atores;
-- sistemas externos;
-- dependências;
-- restrições.
+- dependências.
 
 ### 2. Domínio
 
-Definir:
+Identificar:
 
-- conceitos;
+- entidades;
 - responsabilidades;
-- relações;
-- regras relevantes.
+- regras;
+- limites;
+- relações.
 
-### 3. Estrutura
+### 3. Atributos de qualidade
+
+Avaliar conforme o contexto:
+
+- segurança;
+- desempenho;
+- disponibilidade;
+- confiabilidade;
+- escalabilidade;
+- manutenibilidade;
+- observabilidade;
+- portabilidade;
+- recuperabilidade.
+
+### 4. Alternativas
+
+Avaliar alternativas arquiteturais.
+
+Não escolher tecnologia antes de compreender a decisão.
+
+### 5. Arquitetura
 
 Definir:
 
 - componentes;
 - responsabilidades;
+- fronteiras;
 - interfaces;
-- dependências;
-- fluxos.
+- dados;
+- integrações;
+- operação;
+- segurança.
 
-### 4. Dados
+### 6. Decisões técnicas
 
-Definir:
+Registrar decisões importantes, justificativas, alternativas rejeitadas e consequências.
 
-- entidades;
-- persistência;
-- consistência;
-- ciclo de vida;
-- integração de dados.
+### 7. Dívida técnica
 
-### 5. Integrações
+Identificar dívida técnica potencial ou existente.
 
-Definir:
-
-- contratos;
-- comunicação;
-- erros;
-- autenticação;
-- autorização;
-- resiliência.
-
-### 6. Segurança
-
-Avaliar:
-
-- ameaças;
-- ativos;
-- controles;
-- exposição;
-- proteção de dados.
-
-### 7. Operação
+### 8. Operação
 
 Considerar:
 
-- ambientes;
 - implantação;
 - observabilidade;
 - recuperação;
-- escalabilidade.
+- manutenção;
+- evolução.
 
-### 8. Decisões técnicas
+---
 
-Registrar decisões relevantes e suas justificativas.
+## Revisão
 
-### 9. Review
+Utilizar:
 
-`@reviewer` avalia:
+- `@reviewer` para revisão independente;
+- `@security-engineer` para riscos de segurança;
+- `@data-engineer` para decisões relevantes de dados;
+- `@devops-engineer` para operação e infraestrutura quando aplicável.
 
-- coerência;
-- riscos;
-- complexidade;
-- segurança;
-- escalabilidade;
-- operabilidade;
-- aderência aos requisitos.
+---
+
+## Memórias candidatas
+
+Podem ser candidatas:
+
+- decisões arquiteturais relevantes;
+- decisões técnicas;
+- restrições persistentes;
+- problemas estruturais;
+- aprendizados arquiteturais;
+- riscos de longa duração;
+- eventos que alterem significativamente a arquitetura.
+
+Uma decisão arquitetural deve continuar rastreável mesmo quando posteriormente for substituída.
+
+---
 
 ## Gate
 
-Avançar quando:
+A arquitetura somente avança quando:
 
-- arquitetura estiver documentada;
-- fronteiras estiverem claras;
-- decisões relevantes estiverem justificadas;
-- riscos críticos estiverem tratados;
-- requisitos essenciais possuírem caminho arquitetural.
+- contexto estiver definido;
+- requisitos relevantes estiverem contemplados;
+- atributos de qualidade estiverem identificados;
+- riscos críticos estiverem avaliados;
+- alternativas relevantes tiverem sido consideradas;
+- decisões importantes estiverem justificadas;
+- segurança estiver considerada;
+- dados estiverem tratados;
+- operação estiver considerada;
+- dívida técnica relevante estiver identificada.
+
+Resultado:
+
+```text
+APROVADO
+APROVADO COM PENDÊNCIAS CONTROLADAS
+RETORNAR PARA PRODUCT DEFINITION
+RETORNAR PARA UX
+RETORNAR PARA ARQUITETURA
+BLOQUEADO
+```
+
+---
 
 ## Saída
 
 Produzir:
 
-- arquitetura;
-- modelo de domínio;
-- modelo de dados;
-- contratos;
+- contexto arquitetural;
+- domínio;
+- fronteiras;
+- componentes;
+- dados;
 - integrações;
-- decisões técnicas;
+- atributos de qualidade;
+- segurança;
+- operação;
+- alternativas;
+- decisões;
+- dívida técnica;
 - riscos;
-- requisitos operacionais;
-- requisitos de segurança.
+- candidatas a memória;
+- resultado do gate.
 
-## Decisão
+---
 
-- `APROVADO PARA PLANEJAMENTO`
-- `REQUER REVISÃO`
-- `REQUER REDEFINIÇÃO DE ESCOPO`
+## Próximo estado
+
+```text
+Architecture
+     ↓
+Development / Planning
+```
+
+Quando uma decisão de produto estiver inadequada:
+
+```text
+Architecture
+     ↓
+Product Definition
+```
+
+Quando uma decisão de experiência for insuficiente:
+
+```text
+Architecture
+     ↓
+UX Design
+```

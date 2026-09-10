@@ -67,3 +67,23 @@ O objetivo é encontrar uma estrutura adequada ao contexto.
 ## Resultado esperado
 
 Mudanças relacionadas devem permanecer próximas quando apropriado, enquanto dependências entre responsabilidades distintas devem permanecer explícitas e controláveis.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `implementation`
+- `architecture-design`
+- `refactoring`
+
+### Agentes relacionados
+
+- `software-engineer`
+- `solution-architect`
+
+### Workflows relacionados
+
+- `04-architecture`
+- `05-development`

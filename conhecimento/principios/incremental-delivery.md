@@ -60,3 +60,23 @@ APRENDER
     ↓
 AJUSTAR
 ```
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `implementation`
+- `release-strategy`
+- `evolution-prioritization`
+
+### Agentes relacionados
+
+- `software-engineer`
+- `devops-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `07-delivery`

@@ -8,117 +8,184 @@ version: 1
 
 ## Objetivo
 
-Transformar requisitos e arquitetura aprovados em software funcional, testável e sustentável.
+Transformar requisitos e arquitetura aprovados em software funcional de maneira incremental, verificável e controlada.
 
-## Princípio
-
-Implementar somente aquilo que possui contexto, objetivo e critérios suficientemente definidos.
+---
 
 ## Entrada
 
+Utilizar:
+
 - requisitos;
-- backlog;
 - user stories;
+- critérios de aceitação;
 - arquitetura;
 - decisões técnicas;
-- critérios de aceitação.
+- plano de implementação;
+- dependências;
+- riscos;
+- critérios de qualidade.
 
-## Agente principal
+---
 
-`@software-engineer`
+## Memória
 
-## Agentes participantes
+Antes de decisões relevantes ou implementação, consultar:
 
-- `@data-engineer`
-- `@security-engineer`
-- `@test-engineer`
-- `@reviewer`
+```text
+memoria/decisoes/
+memoria/aprendizados/
+memoria/problemas/
+memoria/riscos/
+```
 
-## Skills
+Priorizar:
 
-- `implementation`
-- `coding-standards`
-- `refactoring`
-- `dependency-management`
-- `error-handling`
-- `logging-and-observability`
-- `configuration-management`
-- `version-control-and-change-management`
+- decisões técnicas anteriores;
+- padrões já utilizados;
+- problemas recorrentes;
+- dívida técnica;
+- incidentes;
+- aprendizados de implementação;
+- restrições persistentes.
+
+Não copiar automaticamente uma implementação anterior.
+
+Verificar se ela continua adequada ao contexto atual.
+
+---
 
 ## Etapas
 
-### 1. Planejamento técnico
+### 1. Planejamento
 
-Identificar:
+Dividir o trabalho em unidades incrementais.
 
-- item;
+### 2. Preparação
+
+Verificar:
+
+- requisitos;
+- arquitetura;
 - dependências;
-- impacto;
-- estratégia;
-- critérios de conclusão.
+- critérios de aceitação;
+- riscos;
+- impacto.
 
-### 2. Implementação
+### 3. Implementação
 
-Desenvolver incrementalmente respeitando:
+Implementar somente o necessário para atender ao objetivo definido.
 
-- requisitos;
-- arquitetura;
-- contratos;
-- padrões;
-- segurança.
+Evitar expansão de escopo.
 
-### 3. Testes durante desenvolvimento
+### 4. Testes
 
-Executar verificações adequadas ao nível da mudança.
+Executar testes adequados ao risco e à mudança.
 
-### 4. Integração
+### 5. Revisão
 
-Integrar componentes e validar contratos.
+Submeter mudanças relevantes a revisão.
 
-### 5. Refatoração
+### 6. Dívida técnica
 
-Melhorar estrutura sem alterar comportamento esperado.
+Identificar dívida criada, descoberta ou reduzida.
 
-### 6. Segurança
+### 7. Observabilidade
 
-Verificar controles relevantes durante a implementação.
+Quando aplicável, garantir:
 
-### 7. Revisão
+- logs;
+- métricas;
+- rastreabilidade;
+- tratamento de erros;
+- sinais operacionais.
 
-`@reviewer` verifica:
+---
 
-- requisitos;
-- arquitetura;
-- qualidade;
-- segurança;
-- manutenção;
-- dívida técnica.
+## Memórias candidatas
+
+Podem ser candidatas:
+
+- decisão técnica relevante;
+- problema recorrente;
+- aprendizado de implementação;
+- padrão que demonstrou eficácia;
+- abordagem que demonstrou inadequação;
+- dívida estrutural;
+- risco persistente;
+- evento técnico relevante.
+
+Um defeito isolado não deve ser automaticamente transformado em memória.
+
+---
+
+## Revisão
+
+Utilizar `@reviewer` quando:
+
+- mudança for significativa;
+- risco for elevado;
+- arquitetura for afetada;
+- houver alteração de comportamento crítico;
+- houver dívida técnica relevante;
+- houver conflito com decisão anterior.
+
+---
 
 ## Gate
 
-Uma unidade de trabalho pode ser considerada concluída quando:
+A implementação pode avançar quando:
 
-- implementação atende aos requisitos;
-- testes relevantes estão passando;
-- critérios de aceitação são atendidos;
-- problemas críticos foram tratados;
-- alterações estão rastreáveis;
-- documentação necessária foi atualizada.
+- requisitos estiverem atendidos;
+- arquitetura estiver respeitada;
+- critérios de aceitação forem verificáveis;
+- testes adequados tiverem sido executados;
+- problemas críticos estiverem resolvidos;
+- riscos conhecidos estiverem controlados;
+- revisão necessária tiver sido realizada.
+
+Resultado:
+
+```text
+APROVADO
+APROVADO COM PENDÊNCIAS CONTROLADAS
+RETORNAR PARA ARQUITETURA
+RETORNAR PARA PLANEJAMENTO
+BLOQUEADO
+```
+
+---
 
 ## Saída
 
 Produzir:
 
-- código;
+- plano;
+- implementação;
+- arquivos alterados;
 - testes;
-- alterações de configuração;
-- documentação técnica necessária;
+- resultados;
+- problemas;
+- dívida técnica;
+- riscos;
 - decisões;
-- evidências;
-- itens pendentes.
+- candidatas a memória;
+- resultado do gate.
 
-## Decisão
+---
 
-- `PRONTO PARA QUALITY`
-- `REQUER CORREÇÃO`
-- `REQUER REVISÃO ARQUITETURAL`
+## Próximo estado
+
+```text
+Development
+     ↓
+Quality
+```
+
+Quando houver problema arquitetural:
+
+```text
+Development
+     ↓
+Architecture
+```

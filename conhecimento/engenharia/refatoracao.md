@@ -53,3 +53,24 @@ Mudanças de comportamento devem ser identificadas separadamente.
 ## Resultado esperado
 
 A estrutura interna deve melhorar sem introduzir mudanças funcionais não planejadas.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `refactoring`
+- `implementation`
+- `unit-testing`
+- `regression-testing`
+
+### Agentes relacionados
+
+- `software-engineer`
+- `test-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `06-quality`

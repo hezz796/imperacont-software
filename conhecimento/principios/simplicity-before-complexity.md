@@ -60,3 +60,23 @@ Antes de introduzir complexidade significativa, perguntar:
 ## Resultado esperado
 
 A solução deve possuir complexidade compatível com o problema que pretende resolver.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `architecture-design`
+- `implementation`
+- `technical-decisions`
+
+### Agentes relacionados
+
+- `solution-architect`
+- `software-engineer`
+
+### Workflows relacionados
+
+- `04-architecture`
+- `05-development`

@@ -104,3 +104,23 @@ Usabilidade pode ser avaliada por diferentes meios, incluindo:
 - análise de erros.
 
 Nenhum método isolado necessariamente responde a todas as questões.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `interaction-design`
+- `accessibility-design`
+- `ux-research`
+- `acceptance-testing`
+
+### Agentes relacionados
+
+- `ux-designer`
+
+### Workflows relacionados
+
+- `03-ux-design`
+- `06-quality`

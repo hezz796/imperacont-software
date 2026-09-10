@@ -50,3 +50,23 @@ O esforço deve considerar criticidade, risco e impacto operacional.
 ## Resultado esperado
 
 A operação deve conseguir detectar, investigar e responder a problemas relevantes com evidências suficientes.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `logging-and-observability`
+- `observability`
+- `architecture-design`
+
+### Agentes relacionados
+
+- `solution-architect`
+- `devops-engineer`
+
+### Workflows relacionados
+
+- `04-architecture`
+- `05-development`

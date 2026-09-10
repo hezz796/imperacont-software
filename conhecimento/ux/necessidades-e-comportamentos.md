@@ -104,3 +104,22 @@ Ao analisar necessidades e comportamentos, deve-se evitar:
 - generalizar evidência limitada.
 
 O objetivo é produzir entendimento suficientemente sólido para orientar decisões.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `ux-research`
+- `user-stories`
+- `user-journeys`
+
+### Agentes relacionados
+
+- `ux-researcher`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `03-ux-design`

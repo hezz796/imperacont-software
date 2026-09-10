@@ -128,3 +128,22 @@ Pesquisa fornece contexto para decisões de:
 - prototipação.
 
 Pesquisa não deve ser reduzida a uma etapa anterior ao design. Evidências podem ser obtidas e utilizadas continuamente.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `ux-research`
+- `user-journeys`
+- `hypothesis-validation`
+
+### Agentes relacionados
+
+- `ux-researcher`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `03-ux-design`

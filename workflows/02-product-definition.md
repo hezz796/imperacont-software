@@ -8,65 +8,125 @@ version: 1
 
 ## Objetivo
 
-Transformar o problema validado em uma definição clara do produto e de seu primeiro escopo de entrega.
+Transformar o entendimento obtido na discovery em uma definição estruturada de produto.
 
-## Princípio
-
-Definir o que deve ser construído e por quê antes de decidir como será implementado.
-
-## Entrada
-
-Requer:
-
-- resultado da discovery;
-- problema;
-- usuários;
-- evidências;
-- oportunidade;
-- hipóteses relevantes.
-
-## Agente principal
-
-`@product-strategist`
-
-## Agentes participantes
-
-- `@business-analyst`
-- `@ux-researcher`
-- `@reviewer`
-
-## Skills
-
-- `requirements-engineering`
-- `user-stories`
-- `backlog-management`
-- `product-modeling`
-- `product-metrics`
-- `product-definition`
-
-## Etapas
-
-### 1. Visão do produto
-
-Definir:
+O workflow deve estabelecer:
 
 - visão;
 - objetivo;
 - público;
 - proposta de valor;
-- resultados esperados.
+- escopo;
+- requisitos;
+- regras de negócio;
+- histórias de usuário;
+- critérios de aceitação;
+- backlog inicial;
+- métricas;
+- riscos;
+- premissas.
 
-### 2. Escopo
+Não antecipar decisões técnicas que pertençam à arquitetura.
 
-Determinar:
+---
 
-- MVP;
-- funcionalidades essenciais;
-- funcionalidades futuras;
-- fora de escopo;
-- restrições.
+## Entrada
 
-### 3. Requisitos
+Utilizar como entrada:
+
+- resultado da discovery;
+- evidências;
+- problema validado;
+- contexto;
+- usuários;
+- oportunidades;
+- hipóteses;
+- restrições;
+- riscos;
+- aprendizados relevantes.
+
+---
+
+## Memória
+
+Antes da definição do produto, consultar:
+
+```text
+memoria/contexto/
+memoria/decisoes/
+memoria/aprendizados/
+memoria/riscos/
+memoria/problemas/
+```
+
+Priorizar memórias relacionadas a:
+
+- domínio;
+- usuários;
+- problemas;
+- decisões de produto anteriores;
+- restrições persistentes;
+- aprendizados de iniciativas anteriores;
+- riscos conhecidos.
+
+Não permitir que uma memória antiga determine automaticamente o produto atual.
+
+Verificar sua validade no contexto atual.
+
+---
+
+## Etapas
+
+### 1. Consolidar visão
+
+Definir:
+
+- qual produto está sendo considerado;
+- qual problema resolve;
+- para quem;
+- qual valor pretende gerar.
+
+### 2. Definir objetivo
+
+Estabelecer resultados esperados.
+
+Separar:
+
+- objetivo;
+- solução;
+- métrica.
+
+### 3. Definir público
+
+Caracterizar:
+
+- usuários;
+- compradores;
+- administradores;
+- partes interessadas;
+- demais atores relevantes.
+
+### 4. Definir valor
+
+Estabelecer:
+
+- benefícios esperados;
+- resultados;
+- diferenciais;
+- hipóteses de valor.
+
+### 5. Definir escopo
+
+Separar claramente:
+
+```text
+IN-SCOPE
+OUT-OF-SCOPE
+```
+
+Evitar expansão não justificada do escopo.
+
+### 6. Engenharia de requisitos
 
 Identificar:
 
@@ -74,64 +134,131 @@ Identificar:
 - requisitos não funcionais;
 - regras de negócio;
 - restrições;
-- dependências.
-
-### 4. User stories
-
-Estruturar necessidades em unidades compreensíveis e verificáveis.
-
-### 5. Backlog
-
-Organizar:
-
-- itens;
-- prioridades;
 - dependências;
-- critérios de aceitação;
-- riscos.
+- premissas.
 
-### 6. Métricas
+### 7. User stories
 
-Definir indicadores relacionados aos resultados esperados.
+Transformar necessidades relevantes em histórias de usuário quando apropriado.
 
-### 7. Review
+Cada história deve possuir critérios de aceitação verificáveis.
 
-`@reviewer` verifica:
+### 8. Backlog
 
-- coerência;
-- completude;
-- ambiguidades;
-- requisitos conflitantes;
-- critérios de aceitação;
-- escopo.
+Estruturar o backlog inicial conforme:
+
+- valor;
+- risco;
+- dependência;
+- urgência;
+- evidência;
+- esforço quando conhecido.
+
+Não utilizar esforço técnico como único critério de prioridade.
+
+### 9. Métricas
+
+Definir métricas capazes de verificar se o produto está atingindo seus objetivos.
+
+### 10. Riscos
+
+Atualizar riscos identificados durante a definição.
+
+---
+
+## Revisão
+
+Solicitar `@reviewer` quando houver:
+
+- requisito crítico;
+- conflito entre requisitos;
+- escopo controverso;
+- risco elevado;
+- regra de negócio ambígua;
+- hipótese importante tratada como fato;
+- impacto relevante em arquitetura futura.
+
+---
+
+## Memórias candidatas
+
+Avaliar ao final:
+
+- decisões de produto;
+- restrições persistentes;
+- aprendizados relevantes;
+- riscos que continuarão existindo;
+- problemas recorrentes;
+- mudanças significativas de contexto.
+
+Hipóteses devem permanecer hipóteses até que exista evidência suficiente.
+
+As candidatas devem ser encaminhadas ao `@squad-lead`.
+
+---
 
 ## Gate
 
 Avançar somente quando:
 
-- objetivo do produto estiver claro;
-- escopo estiver definido;
-- requisitos críticos estiverem identificados;
-- critérios de aceitação forem verificáveis;
-- prioridades estiverem estabelecidas;
-- principais riscos forem conhecidos.
+- visão estiver clara;
+- objetivo estiver definido;
+- público estiver identificado;
+- valor estiver explicitado;
+- escopo estiver delimitado;
+- requisitos críticos estiverem definidos;
+- critérios de aceitação estiverem adequados;
+- riscos relevantes estiverem identificados;
+- métricas principais estiverem definidas;
+- conflitos críticos estiverem resolvidos ou explicitados.
+
+Resultado:
+
+```text
+APROVADO
+APROVADO COM PENDÊNCIAS CONTROLADAS
+RETORNAR PARA DISCOVERY
+BLOQUEADO
+ENCERRADO
+```
+
+---
 
 ## Saída
 
 Produzir:
 
-- product brief;
+- visão do produto;
+- objetivo;
+- público;
+- proposta de valor;
+- escopo;
 - requisitos;
+- regras de negócio;
 - user stories;
-- backlog inicial;
 - critérios de aceitação;
+- backlog;
 - métricas;
 - riscos;
-- escopo;
-- fora de escopo.
+- premissas;
+- decisões;
+- candidatas a memória;
+- resultado do gate.
 
-## Decisão
+---
 
-- `APROVADO PARA UX`
-- `REQUER REFINAMENTO`
-- `REQUER NOVA DISCOVERY`
+## Próximo estado
+
+```text
+Product Definition
+        ↓
+UX / Design
+```
+
+Quando houver necessidade de reexaminar o problema:
+
+```text
+Product Definition
+        ↓
+Discovery
+```

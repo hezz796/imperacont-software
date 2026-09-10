@@ -58,3 +58,22 @@ Uma iniciativa de baixo valor pode ser priorizada se remover um bloqueio crític
 ## Resultado esperado
 
 A priorização deve tornar explícito por que determinado trabalho está recebendo atenção antes de outro.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `backlog-management`
+- `evolution-prioritization`
+- `opportunity-analysis`
+
+### Agentes relacionados
+
+- `product-strategist`
+
+### Workflows relacionados
+
+- `02-product-definition`
+- `08-evolution`

@@ -61,3 +61,23 @@ Erros relevantes devem produzir evidências suficientes para diagnóstico, respe
 ## Resultado esperado
 
 Falhas devem ser compreensíveis, tratáveis e observáveis na medida necessária ao risco e à criticidade do sistema.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `error-handling`
+- `implementation`
+- `logging-and-observability`
+- `reliability-testing`
+
+### Agentes relacionados
+
+- `software-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `06-quality`

@@ -68,3 +68,21 @@ CONSEQUÊNCIAS
 ## Resultado esperado
 
 A tecnologia escolhida deve ser justificável pelo contexto da solução e não pela preferência isolada por uma ferramenta.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `technical-decisions`
+- `architecture-design`
+- `dependency-management`
+
+### Agentes relacionados
+
+- `solution-architect`
+
+### Workflows relacionados
+
+- `04-architecture`

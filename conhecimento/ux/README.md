@@ -87,3 +87,31 @@ Conhecimentos devem ser revisados quando:
 - práticas da squad demonstrarem necessidade de mudança;
 - houver conflito entre conhecimento existente e decisões consolidadas;
 - uma referência se tornar inadequada ou obsoleta.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `ux-research`
+- `user-journeys`
+- `information-architecture`
+- `interaction-design`
+- `accessibility-design`
+- `design-system-thinking`
+- `prototyping`
+- `user-stories`
+
+### Agentes relacionados
+
+- `ux-researcher`
+- `ux-designer`
+- `business-analyst`
+- `product-strategist`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `02-product-definition`
+- `03-ux-design`

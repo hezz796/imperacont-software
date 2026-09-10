@@ -8,130 +8,219 @@ version: 1
 
 ## Objetivo
 
-Disponibilizar uma versão aprovada aos usuários de maneira controlada, observável e recuperável.
+Realizar a liberação do produto de maneira controlada, observável e recuperável.
 
-## Princípio
-
-Uma implantação bem-sucedida tecnicamente não significa necessariamente uma release bem-sucedida para o usuário.
+---
 
 ## Entrada
 
-- release aprovada;
-- artefatos;
-- resultados de qualidade;
+Utilizar:
+
+- resultado da qualidade;
+- versão;
+- mudanças;
+- plano de release;
+- ambiente;
+- plano de deployment;
+- plano de rollback;
+- critérios de validação;
 - riscos;
-- plano de release.
+- métricas;
+- dependências.
 
-## Agente principal
+---
 
-`@devops-engineer`
+## Memória
 
-## Agentes participantes
+Antes da release, consultar:
 
-- `@software-engineer`
-- `@security-engineer`
-- `@test-engineer`
-- `@reviewer`
+```text
+memoria/decisoes/
+memoria/riscos/
+memoria/problemas/
+memoria/aprendizados/
+memoria/historico/
+```
 
-## Skills
+Priorizar:
 
-- `release-strategy`
-- `release-planning`
-- `versioning`
-- `environment-management`
-- `deployment`
-- `rollback-and-recovery`
-- `change-management`
-- `observability`
-- `release-monitoring`
-- `incident-response`
+- incidentes anteriores;
+- problemas de deployment;
+- riscos operacionais;
+- decisões de release;
+- aprendizados de operação;
+- restrições de ambiente;
+- eventos históricos relevantes.
+
+---
 
 ## Etapas
 
-### 1. Preparação
+### 1. Preflight
 
-Confirmar:
+Verificar:
 
 - versão;
 - artefatos;
+- dependências;
 - ambiente;
 - configuração;
-- dependências;
-- pré-condições.
+- segurança;
+- plano de recuperação.
 
-### 2. Release planning
+### 2. Deployment
 
-Confirmar:
+Executar conforme o plano aprovado.
 
-- sequência;
-- responsáveis;
-- validações;
-- contingências.
-
-### 3. Deployment
-
-Executar a implantação controlada.
-
-### 4. Validação
+### 3. Validação
 
 Verificar:
 
 - disponibilidade;
-- fluxos críticos;
+- funcionalidades críticas;
 - integrações;
-- dados;
-- observabilidade.
+- métricas;
+- erros;
+- comportamento esperado.
 
-### 5. Monitoramento
+### 4. Monitoramento
 
-Acompanhar indicadores definidos.
+Observar o sistema após a liberação.
 
-### 6. Recuperação
+### 5. Recuperação
 
-Caso critérios de falha sejam atingidos:
+Quando necessário:
 
 - interromper;
-- conter;
-- recuperar;
-- validar;
-- registrar.
+- rollback;
+- restaurar;
+- corrigir;
+- validar novamente.
 
-### 7. Review
+### 6. Estabilização
 
-Avaliar:
+Confirmar estabilidade suficiente antes de considerar a release concluída.
 
-- execução;
-- incidentes;
-- desvios;
-- evidências;
-- riscos.
+---
+
+## Memórias candidatas
+
+Após a release, avaliar:
+
+- decisão de release relevante;
+- incidente significativo;
+- risco operacional persistente;
+- problema recorrente;
+- aprendizado de deployment;
+- aprendizado de recuperação;
+- evento histórico importante.
+
+Não registrar:
+
+- logs operacionais comuns;
+- métricas isoladas sem interpretação;
+- eventos triviais;
+- execução normal da release.
+
+A memória deve registrar o significado relevante do evento, não simplesmente sua ocorrência técnica.
+
+---
+
+## Incidentes
+
+Quando houver incidente relevante:
+
+```text
+INCIDENTE
+   ↓
+ANÁLISE
+   ↓
+IMPACTO
+   ↓
+CAUSA / HIPÓTESE
+   ↓
+AÇÃO
+   ↓
+APRENDIZADO
+   ↓
+CANDIDATA A MEMÓRIA
+```
+
+Não registrar uma causa como fato quando ela ainda for apenas hipótese.
+
+---
 
 ## Gate
 
 A release pode ser considerada concluída quando:
 
-- implantação ocorreu;
-- validações foram executadas;
-- indicadores estão dentro dos limites definidos;
-- não existem falhas bloqueadoras;
-- recuperação está disponível quando necessária;
-- resultado foi registrado.
+- deployment foi executado;
+- validações foram realizadas;
+- métricas relevantes estão aceitáveis;
+- incidentes críticos estão resolvidos ou controlados;
+- rollback permanece disponível quando necessário;
+- riscos residuais estão conhecidos;
+- estabilidade foi observada.
+
+Resultado:
+
+```text
+RELEASE ESTÁVEL
+RELEASE COM PENDÊNCIAS CONTROLADAS
+ROLLBACK
+BLOQUEADA
+INCIDENTE EM TRATAMENTO
+```
+
+---
 
 ## Saída
 
 Produzir:
 
-- release;
 - versão;
+- mudanças;
 - deployment;
-- evidências;
+- validações;
 - métricas;
 - incidentes;
-- decisão de estabilidade.
+- recuperação;
+- riscos;
+- estabilidade;
+- aprendizados;
+- candidatas a memória;
+- resultado do gate.
 
-## Decisão
+---
 
-- `RELEASE ESTÁVEL`
-- `MONITORAMENTO CONTINUADO`
-- `INTERVENÇÃO NECESSÁRIA`
-- `ROLLBACK / RECUPERAÇÃO`
+## Próximo estado
+
+Após estabilização:
+
+```text
+Delivery
+    ↓
+Evolution
+```
+
+Em caso de incidente:
+
+```text
+Delivery
+    ↓
+Incident Response
+    ↓
+Evolution
+```
+
+Quando uma correção for necessária antes da conclusão:
+
+```text
+Delivery
+    ↓
+Development
+    ↓
+Quality
+    ↓
+Delivery
+```

@@ -69,3 +69,24 @@ Nesse caso, a squad deve registrar a restrição e continuar avaliando seus impa
 ## Resultado esperado
 
 A decisão de construir algo deve estar relacionada a um problema ou oportunidade suficientemente compreendidos e relevantes.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `problem-framing`
+- `product-discovery`
+- `opportunity-analysis`
+- `requirements-engineering`
+
+### Agentes relacionados
+
+- `product-strategist`
+- `business-analyst`
+
+### Workflows relacionados
+
+- `01-discovery`
+- `02-product-definition`

@@ -108,3 +108,22 @@ Interações devem refletir corretamente as regras do domínio.
 Quando uma regra limita determinada ação, essa limitação precisa ser comunicada de forma compreensível.
 
 UX e regras de negócio devem ser coerentes.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `interaction-design`
+- `accessibility-design`
+- `user-journeys`
+
+### Agentes relacionados
+
+- `ux-designer`
+
+### Workflows relacionados
+
+- `03-ux-design`
+- `05-development`

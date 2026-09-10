@@ -58,3 +58,22 @@ Quando relevante, registrar:
 ## Resultado esperado
 
 Métricas devem melhorar decisões, e não apenas produzir dashboards.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `product-metrics`
+- `product-analytics`
+
+### Agentes relacionados
+
+- `product-strategist`
+- `data-engineer`
+
+### Workflows relacionados
+
+- `02-product-definition`
+- `08-evolution`

@@ -51,3 +51,23 @@ Não existe um único esquema universalmente adequado a todos os sistemas.
 ## Resultado esperado
 
 A identificação de versões deve reduzir ambiguidades sobre o estado do software e facilitar rastreabilidade.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `versioning`
+- `version-control-and-change-management`
+- `release-planning`
+
+### Agentes relacionados
+
+- `devops-engineer`
+- `software-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `07-delivery`

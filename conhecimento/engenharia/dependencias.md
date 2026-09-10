@@ -61,3 +61,22 @@ Dependências que deixaram de ser necessárias devem ser removidas quando isso r
 ## Resultado esperado
 
 O conjunto de dependências deve permanecer pequeno o suficiente para ser administrável e grande o suficiente para atender às necessidades justificadas do sistema.
+
+---
+
+## Relações na Squad
+
+### Skills relacionadas
+
+- `dependency-management`
+- `security-design`
+
+### Agentes relacionados
+
+- `software-engineer`
+- `security-engineer`
+
+### Workflows relacionados
+
+- `05-development`
+- `06-quality`
