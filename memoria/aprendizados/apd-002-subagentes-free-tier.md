@@ -17,8 +17,8 @@ Em 2026-09-22, tentativas de delegação a subagentes especializados falharam re
 
 > "Error from provider (Console): OpenCode's free tier can only be used from within OpenCode"
 
-- Falhas observadas até 2026-09-22: `product-strategist` (1×), `business-analyst` (2×), `ux-researcher` (1×) e `ux-designer` (1×).
-- Funcionou neste mesmo dia: `reviewer` (5 execuções completas com sucesso — REQ/US, UX-001, PEN-CONTADOR, WIRE, RESUMO/VAL).
+- Falhas observadas até 2026-09-22: `product-strategist` (1×), `business-analyst` (2×), `ux-researcher` (1×), `ux-designer` (1×) e `solution-architect` (1× — tentativa de delegação do ARC-001, também com erro free tier).
+- Funcionou neste mesmo dia: `reviewer` (6 execuções completas com sucesso — REQ/US, UX-001, PEN-CONTADOR, WIRE, RESUMO/VAL e ARC-001).
 - Não é falha isolada de sintaxe/prompt: é limitação do provedor/modelo dos agentes especializados.
 
 ## Decisão de processo adotada
@@ -40,4 +40,5 @@ Em 2026-09-22, tentativas de delegação a subagentes especializados falharam re
 
 - `projetos/imperacont/product/REQ-001-requirements-mvp.md` (§header)
 - `projetos/imperacont/product/UX-001-ux-design.md`, `WIRE-001-wireframes-mvp.md`, `RESUMO-001-perguntas-urgentes.md`, `VAL-001-roteiro-validacao.md` (§headers — nota de governança)
-- Execução: tentativas task `business-analyst`, `product-strategist`, `ux-researcher`, `ux-designer` (falha), `reviewer` (sucesso 5×)
+- `projetos/imperacont/architecture/ARC-001-architecture.md` (§header)
+- Execução: tentativas task `business-analyst`, `product-strategist`, `ux-researcher`, `ux-designer`, `solution-architect` (falha), `reviewer` (sucesso 6×)
