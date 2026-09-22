@@ -29,7 +29,7 @@ version: 1
 
 ## 3. Contexto
 
-Dor 5 (risco de perder prazos). O benchmark (BE-03) confirma controle de prazos como módulo/espaço padrão. A lista definitiva de obrigações específicas (DAS, DCTF Web, IRPJ, CSLL, PIS, COFINS como **insumo provisório sugerido** — RESUMO-001 B1) depende dos clientes e do contador (PEN-PB-004, INC-007) — a lista final não é definida aqui.
+Dor 5 (risco de perder prazos). O benchmark (BE-03) confirma controle de prazos como módulo/espaço padrão. Lista inicial **confirmada**: DAS, DCTF Web, IRPJ, CSLL, PIS, COFINS (PEN-CONTADOR-001 §10-A/Q8); o catálogo é **configurável** — ajustes por regime/cliente podem evoluir a lista sem alterar código.
 
 ---
 
@@ -172,17 +172,17 @@ Calendário de obrigações por cliente com status confiável.
 - [x] História compreendida.
 - [x] Valor definido.
 - [x] Critérios de aceitação definidos (provisórios).
-- [ ] Lista/parâmetros de obrigações confirmados (pendem contador).
+- [x] Lista/parâmetros de obrigações confirmados (catálogo inicial — PEN-CONTADOR-001 §10-A/Q8).
 - [x] Dependências identificadas.
 - [x] Riscos conhecidos.
-- [ ] Design necessário disponível.
-- [ ] Arquitetura necessária disponível.
-- [ ] Testabilidade confirmada.
+- [x] Design necessário disponível (UX-001 v1.1; telas a validar em PEN-PB-003).
+- [x] Arquitetura necessária disponível (ARC-001 v1.2 — stack C#/.NET confirmada).
+- [x] Testabilidade confirmada (golden cases Q12 aprovados).
 
 ### Resultado
 
 - [ ] Pronta.
-- [x] Pronta com ressalvas.
+- [x] Pronta com ressalvas (validação externa PEN-PB-003 pendente).
 - [ ] Necessita refinamento.
 - [ ] Bloqueada.
 

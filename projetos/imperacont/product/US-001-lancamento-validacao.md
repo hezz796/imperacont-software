@@ -64,7 +64,7 @@ Lançamentos conferidos com menos correções pós-lançamento (métrica §15 do
 
 **Dado que** já existe lançamento com mesmo cliente, data e valor,
 **Quando** confirmo um lançamento com esses mesmos dados,
-**Então** o sistema apresenta "Já existe lançamento parecido" com [Corrigir] [Manter mesmo assim] — exige confirmação do usuário antes de gravar (**política C provisória — RESUMO-001 A2a/A3**); manter grava sinalizado para conferência.
+**Então** o sistema apresenta "Já existe lançamento parecido" com [Corrigir] [Manter mesmo assim] — exige confirmação do usuário antes de gravar (**política C confirmada — RESUMO-001 A2a/A3 + golden cases Q6a**); manter grava sinalizado para conferência.
 
 ### CA-004 — Feedback visível
 
@@ -78,7 +78,7 @@ Lançamentos conferidos com menos correções pós-lançamento (métrica §15 do
 
 - RN-001 — Campos obrigatórios (cliente, data, valor, natureza): bloqueio por exceção consensual.
 - RN-002 — Desbalanceamento débito/crédito: **não se aplica no MVP** (modelo unitário — direção provisória RESUMO-001 A1/A2b; agrupado fora do escopo).
-- RN-003 — Duplicidade: **cliente + data + valor** (definição provisória) → **política C**: avisa "Já existe lançamento parecido", [Corrigir] [Manter mesmo assim]; manter grava sinalizado (RESUMO-001 A2a/A3).
+- RN-003 — Duplicidade: **cliente + data + valor** (definição **confirmada** — golden cases Q6a) → **política C**: avisa "Já existe lançamento parecido", [Corrigir] [Manter mesmo assim]; manter grava sinalizado (RESUMO-001 A2a/A3).
 - RN-004 — Período/competência inconsistente: **data ≠ período selecionado** → **política C**: avisa, usuário corrige ou mantém sinalizado (RESUMO-001 A2c/A4).
 - RN-005 — Lançamento sinalizado exige conferência do contador antes de status "conferido"; conferência em lote (RESUMO-001 A5).
 - RF-012 — Edição/exclusão (direção provisória RESUMO-001 C): autor até conferir; contador depois; edição de conferido reabre conferência; exclusão de conferido = cancelamento com motivo, só contador.
@@ -113,7 +113,7 @@ Lançamentos conferidos com menos correções pós-lançamento (métrica §15 do
 ## 10. Dependências
 
 - RF-001 (cliente cadastrado), RF-002 (usuário/perfil), RF-004 (validação), RF-005 (conferência).
-- Regras exatas de validação (PEN-PB-002 + PEN-REQ-001) com o contador.
+- Regras de validação **confirmadas com golden cases** (PEN-CONTADOR-001 §10-A Q6a/Q6b); validação externa (PEN-PB-003) pendente.
 
 ---
 
@@ -177,18 +177,18 @@ Lançamentos conferidos com menos correções pós-lançamento (métrica §15 do
 
 - [x] História compreendida.
 - [x] Valor definido.
-- [x] Critérios de aceitação definidos (provisórios).
-- [ ] Regras de negócio confirmadas (pendem contador).
+- [x] Critérios de aceitação definidos (confirmados com golden cases Q6a/Q6b).
+- [x] Regras de negócio confirmadas (golden cases aprovados — PEN-CONTADOR-001 §10-A); validação externa (PEN-PB-003) pendente.
 - [x] Dependências identificadas.
 - [x] Riscos conhecidos.
-- [ ] Design necessário disponível.
-- [ ] Arquitetura necessária disponível.
-- [ ] Testabilidade confirmada (golden cases pendentes).
+- [x] Design necessário disponível (UX-001 v1.1; telas a validar em PEN-PB-003).
+- [x] Arquitetura necessária disponível (ARC-001 v1.2 — stack C#/.NET confirmada).
+- [x] Testabilidade confirmada (golden cases Q6a/Q6b aprovados).
 
 ### Resultado
 
 - [ ] Pronta.
-- [x] Pronta com ressalvas.
+- [x] Pronta com ressalvas (validação externa PEN-PB-003 pendente).
 - [ ] Necessita refinamento.
 - [ ] Bloqueada.
 
@@ -202,7 +202,7 @@ Lançamentos conferidos com menos correções pós-lançamento (métrica §15 do
 
 **Testes associados:** (vazio)
 
-**Observações:** Pendência PEN-PB-002/PEN-REQ-001 (regras de validação com contador) antes do desenvolvimento.
+**Observações:** Golden cases Q6a/Q6b aprovados (PEN-CONTADOR-001 §10-A) — regras RN-003/004 confirmadas; resta validação externa (PEN-PB-003).
 
 ---
 

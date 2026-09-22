@@ -107,7 +107,7 @@ Menos multas por atraso; confiança dos clientes.
 ## 10. Dependências
 
 - RF-006/007 (obrigações/prazos), RF-008/009 (pendências).
-- Obrigações específicas por regime (PEN-PB-004) e golden cases de status (PEN-PB-002).
+- Catálogo de obrigações confirmado (PEN-CONTADOR-001 §10-A/Q8) e golden cases de status Q12 aprovados.
 
 ---
 
@@ -171,17 +171,17 @@ Menos multas por atraso; confiança dos clientes.
 - [x] História compreendida.
 - [x] Valor definido.
 - [x] Critérios de aceitação definidos (provisórios).
-- [ ] Regras de status confirmadas (pendem contador).
+- [x] Regras de status confirmadas (RN-006 + golden cases Q12 aprovados — PEN-CONTADOR-001 §10-A).
 - [x] Dependências identificadas.
 - [x] Riscos conhecidos.
-- [ ] Design necessário disponível.
-- [ ] Arquitetura necessária disponível.
-- [ ] Testabilidade confirmada.
+- [x] Design necessário disponível (UX-001 v1.1; telas a validar em PEN-PB-003).
+- [x] Arquitetura necessária disponível (ARC-001 v1.2 — stack C#/.NET confirmada).
+- [x] Testabilidade confirmada (golden cases Q12 aprovados).
 
 ### Resultado
 
 - [ ] Pronta.
-- [x] Pronta com ressalvas.
+- [x] Pronta com ressalvas (validação externa PEN-PB-003 pendente).
 - [ ] Necessita refinamento.
 - [ ] Bloqueada.
 

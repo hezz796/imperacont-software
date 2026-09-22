@@ -4,11 +4,11 @@ description: Arquitetura da solução do MVP 1 do ImperaCont — contexto, domí
 type: architecture
 status: approved-with-conditions
 scope: project
-version: 1.1
+version: 1.2
 project: imperacont-software
 ---
 
-> **Nota de governança (Squad Lead):** este artefato foi produzido **pelo Squad Lead** em 2026-09-22 após tentativa de delegação ao `solution-architect` falhar por indisponibilidade do provedor (erro free tier — mesmo padrão registrado em `memoria/aprendizados/apd-002`). Trabalho executado com o máximo de rigor a partir dos artefatos de entrada (REQ-001 v1.3, UX-001 v1.1, PB-001 v1.1, RESUMO-001 v1.2, memória). A **revisão independente do `reviewer` foi realizada em 2026-09-22** (veredito **APROVADO COM CONDIÇÕES**; correções P-ARC-001…012 incorporadas na v1.1 — ver §27). A análise especializada de arquitetura complementar permanece pendente quando a ferramenta estiver disponível.
+> **Nota de governança (Squad Lead):** este artefato foi produzido **pelo Squad Lead** em 2026-09-22 após tentativa de delegação ao `solution-architect` falhar por indisponibilidade do provedor (erro free tier — mesmo padrão registrado em `memoria/aprendizados/apd-002`). Trabalho executado com o máximo de rigor a partir dos artefatos de entrada (REQ-001 v1.4, UX-001 v1.1, PB-001 v1.1, RESUMO-001 v1.3, memória). A **revisão independente do `reviewer` foi realizada em 2026-09-22** (veredito **APROVADO COM CONDIÇÕES**; correções P-ARC-001…012 incorporadas na v1.1; stack/transporte confirmados na v1.2 — ver §27). A análise especializada de arquitetura complementar permanece pendente quando a ferramenta estiver disponível.
 
 # Architecture — ARC-001 (MVP 1 ImperaCont)
 
@@ -17,10 +17,10 @@ project: imperacont-software
 - **ID:** ARC-001
 - **Produto:** ImperaCont (nome provisório) — ferramenta contábil interna
 - **Projeto:** imperacont-software
-- **Versão:** 1.1
+- **Versão:** 1.2
 - **Responsável:** Squad Lead (inicial; solução-architect pendente — ver header); confirmação final com solicitante/dev único (PEN-PB-006)
 - **Data:** 2026-09-22
-- **Status:** Aprovado com condições (revisão independente do reviewer: veredito em §27; correções P-ARC-001…012 incorporadas)
+- **Status:** Aprovado com condições (revisão independente do reviewer: veredito em §27; stack/transporte confirmados — v1.2)
 
 ---
 
@@ -244,7 +244,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 
 - Login local por **usuário + senha** (RF-002, UC-005).
 - **Hash de senha obrigatório** (bcrypt/argon2) — nunca em texto claro.
-- **Decisão de transporte exigida antes do incremento de autenticação (BL-013/C3):** (a) **HTTP em LAN confiável assumido** — cookie de sessão **sem `Secure`**, com `HttpOnly` + `SameSite`, documento de aceitação de risco e controles compensatórios (ACL do SO, acesso físico, rede interna dedicada); ou (b) **TLS local (self-signed)** com chave distribuída às 2 estações, mantendo `Secure`. **Recomendação p/ este MVP:** opção (a), com controles compensatórios; revisar se houver Wi-Fi aberto/compartilhado (P-ARC-001; PEN-ARC-001/003).
+- **Decisão de transporte tomada (PEN-ARC-001, 2026-09-22):** **(a) HTTP em LAN interna confiável assumido** — cookie de sessão **sem `Secure`**, com `HttpOnly` + `SameSite`, controles compensatórios (ACL do SO, acesso físico, rede interna dedicada). Revisar se houver Wi-Fi aberto/compartilhado (P-ARC-001; aplicar TLS self-signed nesse caso).
 - **Proteção CSRF** obrigatória no front web: token CSRF ou `SameSite=strict/lax` coerente com a decisão acima; validação de origem (P-ARC-006).
 - **Política de lockout mínima:** N falhas (ex.: 5) → lockout temporário progressivo com registro em auditoria; timeout de sessão ociosa configurável (P-ARC-005).
 - Bloqueio de credenciais inválidas sem bloqueio definitivo de conta (UC-005; lockout temporário acima).
@@ -324,7 +324,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 | Categoria | Tecnologia/Opção | Justificativa | Alternativas |
 |---|---|---|---|
 | Arquitetura de entrega | **Aplicação web local (servidor no PC-base + browser nas estações)** | Multi-estação sem instalação por estação; dados centralizados; backup simples; atualização só no servidor; evita banco em arquivo compartilhado (corrupção) | Desktop PDF/Electron + destino central; cliente grosso + servidor de dados |
-| Linguagem/plataforma | **Python (Flask ou Django) — recomendado** | Simples p/ dev básico; templates server-side; SQLite integrado; leitura/manutenção; ecossistema maduro; alinhado ao front-end recomendado (P-ARC-011) | Node.js/Express; .NET (C#); PHP |
+| Linguagem/plataforma | **C#/.NET (ASP.NET Core + Razor Pages) — confirmado** | Fluência mais forte do dev único (EVD-016/017 confirmada 2026-09-22); nativo Windows on-premise; templates server-side; segurança padrão forte; SQLite via Microsoft.Data.Sqlite | Node.js/Express; Python (Flask/Django); PHP |
 | Persistência | **SQLite (modo WAL) centralizado no PC-base** | Volume baixo (RNF-001); 2–3 estações; zero admin; transações ACID; arquivo único backupável; maturidade | PostgreSQL (server local); SQL Server Express |
 | Concorrência | **WAL + transações curtas + busy timeout + otimista com `version`/`updated_at`** | Uso simultâneo (D1b): leitura durante escrita; escrita serializada; evita corrupção e perda de atualização (RNF-002/RSK-UX-005). Mecanismo concreto (P-ARC-003): entidades editáveis (Lançamento, Pendência, Obrigação-instância, Documento, Cliente) têm `version` ou `updated_at`; escrita usa `WHERE version = ?` checando linhas afetadas; conflito → mensagem "dado obsoleto" + recarga (PEN-UX-005); escritas com `BEGIN IMMEDIATE`; conferência em lote com **transação curta por item** (evita `SQLITE_BUSY` prolongado na outra estação) | Banco servidor (Postgres) |
 | Front-end | **Templates server-side (HTML/CSS/JS leve) — recomendado** | Simples, acessível (RNF-010), menos complexidade; sem SPA | React/Vue SPA (mais complexidade) |
@@ -339,8 +339,8 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
    - Se o dev preferir cliente grosso: manter banco central no PC-base (não arquivo compartilhado em rede — risco de corrupção).
 - **DR-0011 (persistência): SQLite WAL centralizado** (se 2–3 estações e volume baixo).
    - Se risco de crescimento/concorrência aumentar: migrar p/ PostgreSQL local (ponto de evolução previsto).
-- **DR-0012 (linguagem): Python (Flask ou Django)** — recomendado: templates server-side simples, alinhado ao front recomendado; FastAPI fica como opção do dev se preferência explícita (API-first) — sem evidência de preferência do dev (EVD-016/017; ver PEN-ARC-001, P-ARC-011).
-   - Alternativas viáveis: Node.js, .NET. **Evidências de preferência do dev não existem** → decisão final deve ser confirmada com o solicitante/dev único (EVD-016/017; ver PEN-ARC-001).
+- **DR-0012 (linguagem): C#/.NET — ASP.NET Core com Razor Pages (confirmado 2026-09-22)** — templates server-side nativos no .NET, fluência do dev único, nativo Windows on-premise (EVD-016/017; PEN-ARC-001 resolvido).
+   - Alternativas viáveis: Node.js, Python. **Evidência de fluência do dev: C#/.NET mais forte — confirmado 2026-09-22 (PEN-ARC-001 resolvido).**
 
 > Importante: o contorno técnico (web local + SQLite WAL) **independe da linguagem**; a escolha da linguagem é a parte negociável final, sem impacto nas fronteiras componentes.
 
@@ -373,7 +373,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 | ADR-007 | **Arquitetura monolítica por domínio** (módulos C5–C11), não serviços | Dev único; baixo volume; simplicidade (evita complexidade antecipada) | Refatorar em serviços só se crescer de fato | 2026-09-22 |
 | ADR-008 | **Anexos locais no PC-base** (repositório com ACL) com metadados no banco | RF-010; RNF-004; backup simples | Gerenciar ACL; caminhos relativos | 2026-09-22 |
 | ADR-009 | **Alertas e status de obrigação isolados e configuráveis** (parâmetro 7d; estados canônicos RN-006) | RNF-005/008; golden cases testáveis | Configuração versionada; revisão periódica (RSK-PB-008) | 2026-09-22 |
-| ADR-010 | **Linguagem:** Python web (FastAPI/Flask) — **recomendada, a confirmar** | Simplicidade p/ dev básico; ecossistema; SQLite | PEN-ARC-001 de confirmação do dev único | 2026-09-22 |
+| ADR-010 | **Linguagem: C#/.NET (ASP.NET Core + Razor Pages) — confirmada** | Fluência do dev único (C#) + nativo Windows on-premise + templates server-side + segurança padrão forte | PEN-ARC-001 resolvido em 2026-09-22 | 2026-09-22 |
 
 ---
 
@@ -412,7 +412,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 |---|---|---|---|---|---|
 | EVD-014 | Sucesso = menos erros/retrabalho + prazos cumpridos | Solicitante | 2026-09-22 | medium | Núcleo do MVP; prioridade RNF-005 |
 | EVD-015 | Volume baixo (~30 lanç/mês/cliente) | Solicitante | 2026-09-22 | medium | ADR-002 (SQLite suficiente) |
-| EVD-016/017 | Dev único, programação básica, sem prazo rígido | Solicitante | 2026-09-22 | medium | ADR-001, ADR-010 (simplicidade) |
+| EVD-016/017 | Dev único, programação básica, sem prazo rígido; **fluência real: C#/.NET mais forte (confirmada pelo dev 2026-09-22)** | Solicitante | 2026-09-22 | high | ADR-001, ADR-010 (C#/.NET) |
 | EVD-018 | On-premise sem bloqueio real | Solicitante | 2026-09-22 | medium | ADR-001, ADR-006 (sem cloud) |
 | dec-002 | Acesso multi-estação interno | Decisão solicitante | 2026-09-22 | high | ADR-001, ADR-002, ADR-003 |
 | RESUMO-001 D1/D1b/D2/D3 | 2 estações; simultâneo; PC-base + rede; backup diário + validação semanal | Solicitante | 2026-09-22 | medium (provisória) | ADR-001…004 |
@@ -442,10 +442,10 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 
 | Informação | Tipo | Decisão de consolidação | Status | Origem |
 |---|---|---|---|---|
-| Decisões de arquitetura do MVP (web local + SQLite WAL + monolítica; sem integrações) + SQLite WAL suficiente p/ 2–3 estações + aprendizado técnico "SQLite em arquivo de rede corrompe" | decisão | **Consolidada em `dec-004`** | draft (ativa após confirmação da stack — PEN-ARC-001) | ARC-001 §17/ADR-001/002 |
-| Backup = cópia consistente + validação semanal pelo contador | decisão | **Fundida em `dec-004`** (evita fragmentação com dec-003) | draft | ARC-001 §15/ADR-004 |
-| Preferência de linguagem do dev não é evidenciada (EVD-016/017) | lacuna | Registrada como lacuna dentro de **PEN-ARC-001** (não é fato) | — | EVD-016/017 |
-| Concorrência tratada com WAL + otimista + aviso de dado obsoleto | aprendizado | Aplicada — **especificada com detalhe mecânico obrigatório (P-ARC-003/PEN-ARC-010)**; manter apenas como `draft` em dec-004 até validação em 2 estações (PEN-ARC-004) | draft | ARC-001 §17/ADR-003 |
+| Decisões de arquitetura do MVP (web local + SQLite WAL + monolítica; sem integrações) + SQLite WAL suficiente p/ 2–3 estações + aprendizado técnico "SQLite em arquivo de rede corrompe" | decisão | **Consolidada em `dec-004`** | **active** (stack confirmada 2026-09-22: C#/.NET) | ARC-001 §17/ADR-001/002 |
+| Backup = cópia consistente + validação semanal pelo contador | decisão | **Fundida em `dec-004`** (evita fragmentação com dec-003) | active | ARC-001 §15/ADR-004 |
+| Preferência de linguagem do dev (**C#/.NET** mais forte) | evidência | **Registrada (EVD-016/017 confirmada)** — substitui a lacuna; base da stack ADR-010 | high | EVD + confirmação 2026-09-22 |
+| Concorrência tratada com WAL + otimista + aviso de dado obsoleto | aprendizado | Aplicada — **especificada com detalhe mecânico obrigatório (P-ARC-003/PEN-ARC-010)**; manter como `draft` em dec-004 até validação em 2 estações (PEN-ARC-004) | draft | ARC-001 §17/ADR-003 |
 
 ---
 
@@ -478,7 +478,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 
 | ID | Pendência | Responsável | Prioridade | Bloqueia implementação |
 |---|---|---|---|---|
-| PEN-ARC-001 | Confirmar **stack/linguagem** com o dev único (recomendação Python Flask/Django; alternativas Node/.NET) e **decidir transporte** (HTTP em LAN assumido vs TLS self-signed — P-ARC-001 obrigatório antes do incremento de autenticação) | Solicitante/dev | Alta | **Sim** (primeiro incremento; autenticação) |
+| PEN-ARC-001 | ~~Confirmar stack/linguagem com o dev único~~ **RESOLVIDO 2026-09-22: C#/.NET (ASP.NET Core + Razor Pages)**; transporte decidido (**HTTP em LAN interna**) — pendência encerrada; consolidação em dec-004/ARC v1.2 | Solicitante/dev | — | ~~Sim~~ **Não** |
 | PEN-ARC-002 | Revisão de segurança detalhada (lockout/timeout — P-ARC-005, CSRF — P-ARC-006, criptografia em repouso) | security-engineer (quando disponível) | Média | Parcial (RNF-003/004) |
 | PEN-ARC-003 | Detalhar **modelo de acesso** final (máquinas, Windows?, como liga/desliga, infraestrutura exata) — RESUMO-001 D provisório; decidir transporte (TLS sim/não) no caminho crítico da autenticação (P-ARC-001) | Solicitante | Alta | **Parcial (produção)** — desenvolvimento pode começar em Dev/Homologação |
 | PEN-ARC-004 | Estabelecer **ambiente de homologação com 2 estações** p/ testes de concorrência (inclui validar mecanismo otimista — P-ARC-003) | DevOps/dev | Média | Testes multi-estação |
@@ -489,7 +489,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 | PEN-ARC-009 | Baseline de métricas (PEN-PB-007) manual 1–2 semanas | Contador | Média | Métrica de resultado |
 | PEN-ARC-010 | **Mecanismo de concorrência otimista** especificado (coluna `version`/`updated_at`; `WHERE version = ?`; `BEGIN IMMEDIATE`; lote com transação curta por item — P-ARC-003 obrigatório) | Dev/Arquitetura | Alta | **Sim (módulos de escrita BL-003…010)** |
 
-> **Liberação de implementação:** a **Arquitetura está definida** e permite iniciar desenvolvimento com pendências controladas — desde que **PEN-ARC-001 (stack)** seja resolvida e os *carry-over* de domínio (PEN-ARC-006/007) sejam liberados em paralelo nos módulos correspondentes. Para **produção**, PEN-ARC-003/005 devem estar fechadas (confirmação de infra + backup/recuperação).
+> **Liberação de implementação:** a **Arquitetura está definida** e permite iniciar desenvolvimento com pendências controladas — **stack confirmada (C#/.NET) e transporte definido (HTTP em LAN)** (PEN-ARC-001 resolvido 2026-09-22); golden cases e catálogo de obrigações **confirmados** (PEN-CONTADOR-001 §10-A). Restam *carry-over* de validação externa/UX (PEN-ARC-007/PEN-PB-003) e PEN-ARC-010 (mecanismo otimista especificado — pronto para implementação). Para **produção**, PEN-ARC-003/005 devem estar fechadas (confirmação de infra + backup/recuperação).
 
 ---
 
@@ -525,9 +525,9 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 
 A arquitetura contempla o problema arquitetural (multi-estação, segurança, confiabilidade, simplicidade, on-premise) com **solução monolítica web local + SQLite WAL**, decisões tecnológicas justificadas por requisitos/qualidade (não por preferência) e alternativas consideradas.
 
-**Revisão independente do reviewer em 2026-09-22: APROVADO COM CONDIÇÕES.** Condições incorporadas: P-ARC-001 (decisão de transporte TLS/HTTP antes do incremento de autenticação; contradição cookie `Secure` resolvida em §13), P-ARC-003 (mecanismo otimista especificado com `version`/`updated_at`/`BEGIN IMMEDIATE`/transação curta em lote — §17/PEN-ARC-010). Recomendações incorporadas: P-ARC-004 (anexos atômicos + restauração de anexo no teste), P-ARC-005 (lockout/timeout), P-ARC-006 (CSRF/SameSite), P-ARC-007 (política de exclusão do não-conferido), P-ARC-008 (alvo de backup independente), P-ARC-009/010 (rastreabilidade e mapeamento BL completos), P-ARC-011 (Flask/Django recomendado), P-ARC-012 (limite de imutabilidade declarado + correções editoriais).
+**Revisão independente do reviewer em 2026-09-22: APROVADO COM CONDIÇÕES.** Condições incorporadas: P-ARC-001 (decisão de transporte TLS/HTTP antes do incremento de autenticação; contradição cookie `Secure` resolvida em §13), P-ARC-003 (mecanismo otimista especificado com `version`/`updated_at`/`BEGIN IMMEDIATE`/transação curta em lote — §17/PEN-ARC-010). Recomendações incorporadas: P-ARC-004 (anexos atômicos + restauração de anexo no teste), P-ARC-005 (lockout/timeout), P-ARC-006 (CSRF/SameSite), P-ARC-007 (política de exclusão do não-conferido), P-ARC-008 (alvo de backup independente), P-ARC-009/010 (rastreabilidade e mapeamento BL completos), P-ARC-011 (ajuste de framework em função da stack — **C#/.NET Razor Pages confirmado**), P-ARC-012 (limite de imutabilidade declarado + correções editoriais).
 
-Pendências críticas que **bloqueiam módulos de implementação**: PEN-ARC-001/010 (stack + transporte + otimista), PEN-ARC-006/007 (golden cases + validação UX — carry-over). **Produção** depende de PEN-ARC-003/005 (infra + backup/recuperação). A definição arquitetural como um todo está **validada**. **Gate arquitetural: APROVADO COM PENDÊNCIAS CONTROLADAS** (não bloqueia planejamento/primeiro incremento desde que PEN-ARC-001 e PEN-ARC-010 sejam resolvidas no bloco correspondente).
+Pendências críticas que **bloqueiam módulos de implementação**: PEN-ARC-010 (mecanismo otimista especificado — pronto), PEN-ARC-006/007 (golden cases **confirmados**; validação UX pendente — carry-over PEN-PB-003). **Produção** depende de PEN-ARC-003/005 (infra + backup/recuperação). A definição arquitetural como um todo está **validada**. **Gate arquitetural: APROVADO COM PENDÊNCIAS CONTROLADAS** (não bloqueia planejamento/primeiro incremento — stack/transporte resolvidos em 2026-09-22).
 
 ---
 
@@ -550,3 +550,4 @@ Pendências críticas que **bloqueiam módulos de implementação**: PEN-ARC-001
 |---|---|---|---|
 | 1.0 | 2026-09-22 | Criação (workflow 04) a partir de REQ-001 v1.3, UX-001 v1.1, PB-001 v1.1, RESUMO-001 v1.2 e memória; produzido pelo Squad Lead após indisponibilidade do solution-architect (apd-002); revisão independente do reviewer pendente (gate) | Squad Lead |
 | 1.1 | 2026-09-22 | Incorpora revisão independente do reviewer (APROVADO COM CONDIÇÕES): P-ARC-001 (transporte TLS/HTTP decisão obrigatória pré-autenticação), P-ARC-003 (mecanismo otimista especificado), P-ARC-004 (anexos + restauração no teste), P-ARC-005 (lockout/sessão), P-ARC-006 (CSRF/SameSite), P-ARC-007 (política de exclusão do não-conferido), P-ARC-008 (alvo de backup independente), P-ARC-009/010 (rastreabilidade/mapeamento BL), P-ARC-011 (Flask/Django recomendado), P-ARC-012 (editorial + limite de imutabilidade); novas pendências PEN-ARC-010; gate APROVADO COM PENDÊNCIAS CONTROLADAS | Squad Lead + reviewer |
+| 1.2 | 2026-09-22 | Stack **confirmada: C#/.NET (ASP.NET Core + Razor Pages)** (fluência do dev — EVD-016/017 resolvida) e transporte **definido: HTTP em LAN interna** (PEN-ARC-001 encerrado); ADR-010/DR-0012/§13/§18 atualizados; memórias candidatas §24 e evidências atualizadas; gate reforça liberação de implementação (restam carry-over UX/PEN-PB-003 e produção PEN-ARC-003/005) | Squad Lead (aplicação das respostas complementares do solicitante) |

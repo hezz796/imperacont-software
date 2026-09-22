@@ -46,11 +46,12 @@ Valor (dor resolvida) + risco (consequência) + dependência + evidência. **Esf
 
 ## Pendências que condicionam o backlog
 
-- PEN-PB-002 — golden cases de validação (bloqueia BL-003/004 em detalhe).
-- PEN-PB-004 — obrigações específicas (BL-005/006).
-- PEN-PB-003 — validação com auxiliares (bloqueia fechamento de UX de BL-003/007/008).
-- PEN-PB-006 — modelo de acesso (bloqueia Arquitetura/solução técnica de BL-012/013).
-- PEN-REQ-002 — política de edição/exclusão (BL-010).
+- ~~PEN-PB-002~~ — golden cases de validação (Q6a/Q6b/Q12) **confirmados 2026-09-22** (PEN-CONTADOR-001 §10-A) — BL-003/004 desbloqueados.
+- ~~PEN-PB-004~~ — catálogo inicial de obrigações **confirmado 2026-09-22** (Q8) — BL-005/006 desbloqueados (ajustes por regime/cliente seguem configuráveis).
+- PEN-PB-003 — validação com auxiliares (bloqueia fechamento de UX de BL-003/007/008) — **agendamento pendente**.
+- ~~PEN-PB-006~~ — modelo de acesso **respondido** (RESUMO-001 D1-D3) e consolidado na Arquitetura (ARC-001 v1.2).
+- ~~PEN-REQ-002~~ — política de edição/exclusão **confirmada** (RESUMO-001 C1-C3) — BL-010.
+- PEN-ARC-003/005 — infra final + backup/recuperação padronizados (produção; BL-012).
 
 ## Rastreabilidade
 

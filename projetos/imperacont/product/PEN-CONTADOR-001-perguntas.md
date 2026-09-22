@@ -1,9 +1,9 @@
 ---
 title: Perguntas ao contador — consolidação de pendências de domínio
 type: dependencies
-status: reviewed
+status: answered
 scope: project
-version: 1.1
+version: 1.2
 project: imperacont-software
 ---
 
@@ -221,6 +221,58 @@ Quem valida o backup periodicamente?
 
 ---
 
+## 10-A. Respostas confirmadas (2026-09-22)
+
+> Registro das respostas efetivamente recebidas do solicitante (com recomendações da squad). Golden cases adotados como **casos de teste padrão** (números fictícios aceitáveis conforme §2). A **validação externa** (contador colega/auxiliares) permanece pendente (PEN-PB-003/apd-001), mas as regras deixam de ser "direção provisória" para o desenvolvimento.
+
+### Q6a — Golden cases de duplicidade (RN-003)
+
+Regra aplicada: duplicidade = mesmo **cliente + data + valor** → política **C (confirmar antes de gravar)**.
+
+| # | Caso | Resultado esperado |
+|---|---|---|
+| 1 | Padaria X, 10/06, R$ 500,00 lançado 2× no mesmo dia | Confirmar antes de gravar (avisa; manter grava sinalizado p/ conferência) |
+| 2 | Padaria X, 10/06: R$ 500,00 vs R$ 550,00 | **Não** é duplicidade (valor diferente) → grava normal |
+| 3 | Padaria X, 10/06 R$ 500,00 + 11/06 R$ 500,00 | **Não** é duplicidade (data diferente) → grava normal |
+
+### Q6b — Golden cases de período (RN-004)
+
+Regra aplicada: data do lançamento ≠ período selecionado → política **C (confirmar antes de gravar)**.
+
+| # | Caso | Resultado esperado |
+|---|---|---|
+| 1 | Data 05/05/2026 no período 06/2026 | Confirmar antes de gravar (avisa; corrigir ou manter sinalizado) |
+| 2 | Data 10/06/2026 no período 06/2026 | Consistente → grava normal |
+| 3 | Data 30/06/2026 no período 07/2026 | Confirmar antes de gravar |
+
+### Q8 — Catálogo inicial de obrigações (RF-006)
+
+Confirmada a **lista inicial sugerida** (B1/RESUMO-001), configurável por regime/cliente:
+
+| Obrigação | Periodicidade | Data típica (ref.) |
+|---|---|---|
+| DAS (Simples Nacional) | Mensal | ~dia 20 |
+| DCTF Web | Mensal | ~dia 25 |
+| IRPJ | Trimestral | 1º dia útil do período seguinte |
+| CSLL | Trimestral | 1º dia útil do período seguinte |
+| PIS | Mensal | ~dia 25 |
+| COFINS | Mensal | ~dia 25 |
+
+> Registro/controle de prazo e entrega apenas — sem cálculo/envio (fora do MVP).
+
+### Q12 — Golden cases de obrigações/status (RN-006, RNF-005)
+
+Regra aplicada: estados **em dia → a vencer → atrasado → entregue**; alerta **7 dias** antes do vencimento; entrega = data + autor (anexo opcional).
+
+| # | Caso (hoje → vencimento → entrega) | Status esperado |
+|---|---|---|
+| 1 | Hoje 10/06, DAS vence 20/06 | **em dia** (sem alerta; >7 dias) |
+| 2 | Hoje 15/06, DAS vence 20/06 | **a vencer** (alerta ativo — dentro de 7 dias) |
+| 3 | Hoje 21/06, DAS venceu 20/06 sem entrega | **atrasado** |
+| 4 | Hoje 21/06, DAS venceu 20/06 e entregue em 15/06 (data+autor) | **entregue** (não atrasado — entregue antes do vencimento) |
+
+---
+
 ## 11. Rastreabilidade
 
 | Pergunta | Requisito/Regra | Origem | Teste |
@@ -246,3 +298,4 @@ Quem valida o backup periodicamente?
 |---|---|---|---|
 | 1.0 | 2026-09-22 | Consolidação das pendências de domínio/operação em perguntas objetivas | Squad Lead (BA indisponível — apd-002) |
 | 1.1 | 2026-09-22 | Correções P-A1…P-A9 da revisão independente: golden cases de obrigações/status (P-A1), contagem "por regra" (P-A2), opção "confirmar antes de gravar" (P-A3), matriz perfil→ação Q24 + claims PEN-UX-002/007 corrigidas (P-A4), escopo de Q8 (P-A5), modelagem por regime (P-A6), neutralidade Q14/Q22 (P-A7), rastreabilidade Q17–Q18 manual (P-A8), rotina de re-cadastro Q27 (P-A9) | Squad Lead (após revisão reviewer) |
+| 1.2 | 2026-09-22 | Respostas confirmadas §10-A: Q6a/Q6b golden cases de duplicidade e período (adotados como casos de teste padrão), Q8 catálogo inicial confirmado, Q12 golden cases de obrigações/status. Regras RN-003/004/006 deixam de ser provisórias para desenvolvimento; validação externa (PEN-PB-003) permanece pendente | Squad Lead (aplicação das respostas do solicitante) |
