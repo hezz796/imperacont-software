@@ -44,6 +44,8 @@ Valor (dor resolvida) + risco (consequência) + dependência + evidência. **Esf
 2. **Apoio (P1):** BL-001/002/008/009/010/013.
 3. **Métricas (P2):** BL-011/012 (backup pode subir de prioridade com a Arquitetura).
 
+> **Plano de implementação:** `planning/PLN-001-impl-plan.md` (v1.1, aprovado com condições por revisão independente) — incrementos IN-00…IN-13 com sequência, testes e gate por incremento.
+
 ## Pendências que condicionam o backlog
 
 - ~~PEN-PB-002~~ — golden cases de validação (Q6a/Q6b/Q12) **confirmados 2026-09-22** (PEN-CONTADOR-001 §10-A) — BL-003/004 desbloqueados.
