@@ -4,7 +4,7 @@ description: Arquitetura da solução do MVP 1 do ImperaCont — contexto, domí
 type: architecture
 status: approved-with-conditions
 scope: project
-version: 1.3
+version: 1.4
 project: imperacont-software
 ---
 
@@ -17,7 +17,7 @@ project: imperacont-software
 - **ID:** ARC-001
 - **Produto:** ImperaCont (nome provisório) — ferramenta contábil interna
 - **Projeto:** imperacont-software
-- **Versão:** 1.3
+- **Versão:** 1.4
 - **Responsável:** Squad Lead (inicial; solução-architect pendente — ver header); confirmação final com solicitante/dev único (PEN-PB-006)
 - **Data:** 2026-09-22
 - **Status:** Aprovado com condições (revisão independente do reviewer: veredito em §27; stack/transporte/rede confirmados — v1.3)
@@ -324,7 +324,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 | Categoria | Tecnologia/Opção | Justificativa | Alternativas |
 |---|---|---|---|
 | Arquitetura de entrega | **Aplicação web local (servidor no PC-base + browser nas estações)** | Multi-estação sem instalação por estação; dados centralizados; backup simples; atualização só no servidor; evita banco em arquivo compartilhado (corrupção) | Desktop PDF/Electron + destino central; cliente grosso + servidor de dados |
-| Linguagem/plataforma | **C#/.NET (ASP.NET Core + Razor Pages) — confirmado** | Fluência mais forte do dev único (EVD-016/017 confirmada 2026-09-22); nativo Windows on-premise; templates server-side; segurança padrão forte; SQLite via Microsoft.Data.Sqlite | Node.js/Express; Python (Flask/Django); PHP |
+| Linguagem/plataforma | **C#/.NET (ASP.NET Core + Razor Pages) — confirmado (versão: .NET 10 LTS)** | Fluência mais forte do dev único (EVD-016/017 confirmada 2026-09-22); nativo Windows on-premise; templates server-side; segurança padrão forte; SQLite via Microsoft.Data.Sqlite. **Versão LTS atual (suporte até 14/11/2028); .NET 8/9 encerram em 10/11/2026 — não iniciar projeto novo em versão prestes a sair de suporte (EVD-020)** | Node.js/Express; Python (Flask/Django); PHP |
 | Persistência | **SQLite (modo WAL) centralizado no PC-base** | Volume baixo (RNF-001); 2–3 estações; zero admin; transações ACID; arquivo único backupável; maturidade | PostgreSQL (server local); SQL Server Express |
 | Concorrência | **WAL + transações curtas + busy timeout + otimista com `version`/`updated_at`** | Uso simultâneo (D1b): leitura durante escrita; escrita serializada; evita corrupção e perda de atualização (RNF-002/RSK-UX-005). Mecanismo concreto (P-ARC-003): entidades editáveis (Lançamento, Pendência, Obrigação-instância, Documento, Cliente) têm `version` ou `updated_at`; escrita usa `WHERE version = ?` checando linhas afetadas; conflito → mensagem "dado obsoleto" + recarga (PEN-UX-005); escritas com `BEGIN IMMEDIATE`; conferência em lote com **transação curta por item** (evita `SQLITE_BUSY` prolongado na outra estação) | Banco servidor (Postgres) |
 | Front-end | **Templates server-side (HTML/CSS/JS leve) — recomendado** | Simples, acessível (RNF-010), menos complexidade; sem SPA | React/Vue SPA (mais complexidade) |
@@ -339,7 +339,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
    - Se o dev preferir cliente grosso: manter banco central no PC-base (não arquivo compartilhado em rede — risco de corrupção).
 - **DR-0011 (persistência): SQLite WAL centralizado** (se 2–3 estações e volume baixo).
    - Se risco de crescimento/concorrência aumentar: migrar p/ PostgreSQL local (ponto de evolução previsto).
-- **DR-0012 (linguagem): C#/.NET — ASP.NET Core com Razor Pages (confirmado 2026-09-22)** — templates server-side nativos no .NET, fluência do dev único, nativo Windows on-premise (EVD-016/017; PEN-ARC-001 resolvido).
+- **DR-0012 (linguagem): C#/.NET — ASP.NET Core com Razor Pages (confirmado 2026-09-22)** — templates server-side nativos no .NET, fluência do dev único, nativo Windows on-premise (EVD-016/017; PEN-ARC-001 resolvido). **Versão: .NET 10 LTS (SDK 10.0.x)** — LTS atual com suporte até 14/11/2028; .NET 8/9 terminam em 10/11/2026 (EVD-020, confirmado 2026-09-22).
    - Alternativas viáveis: Node.js, Python. **Evidência de fluência do dev: C#/.NET mais forte — confirmado 2026-09-22 (PEN-ARC-001 resolvido).**
 
 > Importante: o contorno técnico (web local + SQLite WAL) **independe da linguagem**; a escolha da linguagem é a parte negociável final, sem impacto nas fronteiras componentes.
@@ -415,6 +415,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 | EVD-016/017 | Dev único, programação básica, sem prazo rígido; **fluência real: C#/.NET mais forte (confirmada pelo dev 2026-09-22)** | Solicitante | 2026-09-22 | high | ADR-001, ADR-010 (C#/.NET) |
 | EVD-018 | On-premise sem bloqueio real | Solicitante | 2026-09-22 | medium | ADR-001, ADR-006 (sem cloud) |
 | EVD-019 | Rede do escritório: **Wi-Fi próprio, protegido (WPA2/WPA3), sem compartilhamento com terceiros** | Solicitante | 2026-09-22 | high | P-ARC-001 (HTTP em LAN mantido) |
+| EVD-020 | **.NET 10 é a LTS atual (suporte até 14/11/2028); .NET 8/9 encerram suporte em 10/11/2026** | Microsoft .NET Support Policy (verificado 2026-09-22) | 2026-09-22 | high | DR-0012 (versão .NET 10 LTS; não iniciar em .NET 8) |
 | dec-002 | Acesso multi-estação interno | Decisão solicitante | 2026-09-22 | high | ADR-001, ADR-002, ADR-003 |
 | RESUMO-001 D1/D1b/D2/D3 | 2 estações; simultâneo; PC-base + rede; backup diário + validação semanal | Solicitante | 2026-09-22 | medium (provisória) | ADR-001…004 |
 | RSK-UX-005/PEN-UX-005 | Concorrência multi-estação | UX-001 | 2026-09-22 | medium | ADR-003 |
@@ -553,3 +554,4 @@ Pendências críticas que **bloqueiam módulos de implementação**: PEN-ARC-010
 | 1.1 | 2026-09-22 | Incorpora revisão independente do reviewer (APROVADO COM CONDIÇÕES): P-ARC-001 (transporte TLS/HTTP decisão obrigatória pré-autenticação), P-ARC-003 (mecanismo otimista especificado), P-ARC-004 (anexos + restauração no teste), P-ARC-005 (lockout/sessão), P-ARC-006 (CSRF/SameSite), P-ARC-007 (política de exclusão do não-conferido), P-ARC-008 (alvo de backup independente), P-ARC-009/010 (rastreabilidade/mapeamento BL), P-ARC-011 (Flask/Django recomendado), P-ARC-012 (editorial + limite de imutabilidade); novas pendências PEN-ARC-010; gate APROVADO COM PENDÊNCIAS CONTROLADAS | Squad Lead + reviewer |
 | 1.2 | 2026-09-22 | Stack **confirmada: C#/.NET (ASP.NET Core + Razor Pages)** (fluência do dev — EVD-016/017 resolvida) e transporte **definido: HTTP em LAN interna** (PEN-ARC-001 encerrado); ADR-010/DR-0012/§13/§18 atualizados; memórias candidatas §24 e evidências atualizadas; gate reforça liberação de implementação (restam carry-over UX/PEN-PB-003 e produção PEN-ARC-003/005) | Squad Lead (aplicação das respostas complementares do solicitante) |
 | 1.3 | 2026-09-22 | Rede confirmada: **Wi-Fi próprio protegido (WPA2/WPA3, sem terceiros — EVD-019)**; P-ARC-001 mantido (HTTP em LAN); RSK-ARC-004 rebaixado para Baixa | Squad Lead (aplicação da resposta do solicitante) |
+| 1.4 | 2026-09-22 | **Versão .NET definida: .NET 10 LTS** (suporte até 14/11/2028; .NET 8/9 encerram em 10/11/2026 — EVD-020); DR-0012 e linha de Linguagem/plataforma atualizados | Squad Lead (decisão do usuário/dev) |

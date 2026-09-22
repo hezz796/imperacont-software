@@ -26,7 +26,7 @@ Entradas utilizadas:
 
 Decisões-chave já consolidadas que orientam o plano:
 
-- **Stack: C#/.NET — ASP.NET Core + Razor Pages** (ADR-010; DR-0012);
+- **Stack: C#/.NET — ASP.NET Core + Razor Pages, versão .NET 10 LTS** (ADR-010; DR-0012; EVD-020: LTS atual até 14/11/2028; .NET 8/9 terminam em 10/11/2026 — não iniciar em versão em fim de suporte);
 - **Banco: SQLite em modo WAL, centralizado no PC-base** (ADR-002/003), acesso via `Microsoft.Data.Sqlite` + ORM leve/Dapper (não EF pesado no início);
 - **Transporte: HTTP em LAN interna própria protegida** (P-ARC-001/EVD-019);
 - **Concorrência otimista (transversal a todo módulo de escrita)** (PEN-ARC-010): `version`/`updated_at`, `WHERE version = ?`, `BEGIN IMMEDIATE`, transação curta em lote — aplicável a **todas** as entidades editáveis (Cliente, Lançamento, Pendência, Obrigação-instância, Documento);
@@ -92,7 +92,7 @@ Cada incremento tem: escopo, artefatos de origem, critérios de saída (testes/v
 | Escopo | Solução .NET (sln), projeto `ImperaCont.Web` (Razor Pages), `ImperaCont.Tests`; conexão SQLite WAL (`PRAGMA journal_mode=WAL`, `busy_timeout`), camada Data mínima; página home/health-base; CI local básico (`dotnet build`, `dotnet test`) |
 | Origem | ARC-001 ADR-001/002/003/010, dec-004 |
 | Critérios de saída | `dotnet build` e `dotnet test` verdes; app sobe em `http://localhost:PORT`; teste unitário de exemplo |
-| Riscos | Versão do SDK/ambiente do dev (verificar .NET instalado); WAL requer permissão de escrita no diretório |
+| Riscos | Versão do SDK/ambiente do dev (verificar .NET instalado) — **usar .NET 10 LTS (EVD-020)**; WAL requer permissão de escrita no diretório |
 
 ### IN-01 — Autenticação, autorização, auditoria e seed inicial (BL-013, C3, UC-005)
 

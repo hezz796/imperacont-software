@@ -22,7 +22,7 @@ Para o MVP 1 do ImperaCont, a direção arquitetural adotada é:
 4. **Sem integrações externas no MVP** (sem nuvem, sem SaaS, sem sistemas fiscais) — mitigação de risco e de escopo.
 5. **Concorrência com WAL + transações curtas + busy timeout + controle otimista** (`version`/`updated_at`, `WHERE version = ?`, `BEGIN IMMEDIATE`, lote com transação curta por item) — especificação obrigatória antes dos módulos de escrita (PEN-ARC-010; detalhado no ARC-001).
 6. **Backup = cópia consistente do banco (VACUUM INTO/snapshot) + cópia de anexos (gravação atômica) + validação semanal com restauração testada, incluindo 1 anexo**, em alvo independente do PC-base.
-7. **Stack confirmada (2026-09-22): C#/.NET — ASP.NET Core com Razor Pages** (fluência mais forte do dev único; nativo Windows on-premise; segurança padrão forte; templates server-side).
+7. **Stack confirmada (2026-09-22): C#/.NET — ASP.NET Core com Razor Pages, versão .NET 10 LTS** (fluência mais forte do dev único; nativo Windows on-premise; segurança padrão forte; templates server-side). Escolha da versão: **.NET 10 LTS é a LTS atual (suporte até 14/11/2028); .NET 8/9 encerram suporte em 10/11/2026 — não iniciar projeto novo em versão prestes a sair de suporte (EVD-020)**.
 8. **Transporte confirmado (2026-09-22): HTTP em LAN interna confiável** — cookie sem `Secure`, com `HttpOnly` + `SameSite`, e controles compensatórios (ACL do SO, acesso físico, rede interna dedicada). **Rede do escritório confirmada como Wi-Fi próprio protegido (WPA2/WPA3), sem terceiros (EVD-019)** — situação aceitável para HTTP; revisar — adotando TLS self-signed — apenas se surgir Wi-Fi aberto/compartilhado.
 
 ## Contexto
@@ -49,7 +49,7 @@ Para o MVP 1 do ImperaCont, a direção arquitetural adotada é:
 
 ## Rastreabilidade
 
-- `projetos/imperacont/architecture/ARC-001-architecture.md` v1.2 (ADR-001…010, §13/§17/§18)
+- `projetos/imperacont/architecture/ARC-001-architecture.md` v1.3 (ADR-001…010, §13/§17/§18; DR-0012 .NET 10 LTS; EVD-019/020)
 - `projetos/imperacont/product/REQ-001-requirements-mvp.md` v1.4 (RNF-002/003/006/009)
 - `projetos/imperacont/product/PEN-CONTADOR-001-perguntas.md` §10-A (golden cases/catálogo confirmados)
 - `memoria/decisoes/dec-002-acesso-multi-estacao.md`, `memoria/decisoes/dec-003-direcoes-provisorias-resumo-001.md`
