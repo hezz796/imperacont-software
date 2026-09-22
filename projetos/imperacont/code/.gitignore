@@ -1,0 +1,34 @@
+# --- .NET build output ---
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userprefs
+
+# --- Test results ---
+[Tt]est[Rr]esults/
+*.trx
+coverage*.json
+coverage*.xml
+*.coverage
+*.coveragexml
+
+# --- SQLite local database (bootstrap default imperacont.db) ---
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+
+# --- Configurações locais por máquina (não versionar) ---
+appsettings.*.local.json
+
+# --- IDE ---
+.vs/
+.idea/
+.vscode/
+
+# --- NuGet ---
+packages/
+*.nupkg
