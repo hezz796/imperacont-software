@@ -4,7 +4,7 @@ description: Arquitetura da solução do MVP 1 do ImperaCont — contexto, domí
 type: architecture
 status: approved-with-conditions
 scope: project
-version: 1.2
+version: 1.3
 project: imperacont-software
 ---
 
@@ -17,10 +17,10 @@ project: imperacont-software
 - **ID:** ARC-001
 - **Produto:** ImperaCont (nome provisório) — ferramenta contábil interna
 - **Projeto:** imperacont-software
-- **Versão:** 1.2
+- **Versão:** 1.3
 - **Responsável:** Squad Lead (inicial; solução-architect pendente — ver header); confirmação final com solicitante/dev único (PEN-PB-006)
 - **Data:** 2026-09-22
-- **Status:** Aprovado com condições (revisão independente do reviewer: veredito em §27; stack/transporte confirmados — v1.2)
+- **Status:** Aprovado com condições (revisão independente do reviewer: veredito em §27; stack/transporte/rede confirmados — v1.3)
 
 ---
 
@@ -244,7 +244,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 
 - Login local por **usuário + senha** (RF-002, UC-005).
 - **Hash de senha obrigatório** (bcrypt/argon2) — nunca em texto claro.
-- **Decisão de transporte tomada (PEN-ARC-001, 2026-09-22):** **(a) HTTP em LAN interna confiável assumido** — cookie de sessão **sem `Secure`**, com `HttpOnly` + `SameSite`, controles compensatórios (ACL do SO, acesso físico, rede interna dedicada). Revisar se houver Wi-Fi aberto/compartilhado (P-ARC-001; aplicar TLS self-signed nesse caso).
+- **Decisão de transporte tomada (PEN-ARC-001, 2026-09-22):** **(a) HTTP em LAN interna confiável assumido** — cookie de sessão **sem `Secure`**, com `HttpOnly` + `SameSite`, controles compensatórios (ACL do SO, acesso físico, rede interna dedicada). **Rede confirmada (2026-09-22): Wi-Fi próprio do escritório, protegido (WPA2/WPA3), sem compartilhamento com terceiros — situação aceitável para HTTP.** Revisar se houver Wi-Fi aberto/compartilhado (P-ARC-001; aplicar TLS self-signed nesse caso).
 - **Proteção CSRF** obrigatória no front web: token CSRF ou `SameSite=strict/lax` coerente com a decisão acima; validação de origem (P-ARC-006).
 - **Política de lockout mínima:** N falhas (ex.: 5) → lockout temporário progressivo com registro em auditoria; timeout de sessão ociosa configurável (P-ARC-005).
 - Bloqueio de credenciais inválidas sem bloqueio definitivo de conta (UC-005; lockout temporário acima).
@@ -398,7 +398,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 | RSK-ARC-001 | SQLite WAL não suficiente p/ uso simultâneo intenso | Baixa (volume baixo) | Médio | Volume baixo; busy timeout; transações curtas; monitorar | Migrar p/ PostgreSQL local (ADR-002) |
 | RSK-ARC-002 | Falha/perda do PC-base (único repositório) | Média | Alto | Backup diário + validação semanal + recuperação testada (RNF-006) | Restaurar backup; plano de contingência de hardware |
 | RSK-ARC-003 | Rede local indisponível/instável | Média | Médio | Dependência de rede é aceita; mensagens de erro claras; PC-base estável | Restauração rápida; backup local externo |
-| RSK-ARC-004 | Segurança por falta de TLS/proteção de rede | Média | Alto | Restrição de acesso físico; ACL; criptografia de dados/anexos; auditoria | TLS local; isolamento de rede (PEN-ARC-002) |
+| RSK-ARC-004 | Segurança por falta de TLS/proteção de rede | **Baixa** | Alto | **Rede própria protegida (EVD-019): Wi-Fi WPA2/WPA3 sem terceiros; restrição de acesso físico; ACL; auditoria** | TLS local; isolamento de rede (PEN-ARC-002) — só se rede mudar |
 | RSK-ARC-005 | Regras de domínio incorretas (RSK-PB-002/006) | Alta | Alto | Golden cases antes do dev; regras isoladas e testáveis (ADR-009) | Revisão com contador; correção controlada |
 | RSK-ARC-006 | Complexity que exceda capacidade do dev único | Média | Alto | Stack simples (ADR-001…010); escopo curto; backlog incremental | Cortes; simplificação; mais tempo |
 | RSK-ARC-007 | Backup inconsistente (arquivos abertos/mid-backup) | Média | Alto | Cópia consistente (VACUUM INTO/snapshot) + validação semanal | Réplica local; teste de restauração |
@@ -414,6 +414,7 @@ Uma **aplicação monolítica** executando no **PC-base do escritório**, com um
 | EVD-015 | Volume baixo (~30 lanç/mês/cliente) | Solicitante | 2026-09-22 | medium | ADR-002 (SQLite suficiente) |
 | EVD-016/017 | Dev único, programação básica, sem prazo rígido; **fluência real: C#/.NET mais forte (confirmada pelo dev 2026-09-22)** | Solicitante | 2026-09-22 | high | ADR-001, ADR-010 (C#/.NET) |
 | EVD-018 | On-premise sem bloqueio real | Solicitante | 2026-09-22 | medium | ADR-001, ADR-006 (sem cloud) |
+| EVD-019 | Rede do escritório: **Wi-Fi próprio, protegido (WPA2/WPA3), sem compartilhamento com terceiros** | Solicitante | 2026-09-22 | high | P-ARC-001 (HTTP em LAN mantido) |
 | dec-002 | Acesso multi-estação interno | Decisão solicitante | 2026-09-22 | high | ADR-001, ADR-002, ADR-003 |
 | RESUMO-001 D1/D1b/D2/D3 | 2 estações; simultâneo; PC-base + rede; backup diário + validação semanal | Solicitante | 2026-09-22 | medium (provisória) | ADR-001…004 |
 | RSK-UX-005/PEN-UX-005 | Concorrência multi-estação | UX-001 | 2026-09-22 | medium | ADR-003 |
@@ -551,3 +552,4 @@ Pendências críticas que **bloqueiam módulos de implementação**: PEN-ARC-010
 | 1.0 | 2026-09-22 | Criação (workflow 04) a partir de REQ-001 v1.3, UX-001 v1.1, PB-001 v1.1, RESUMO-001 v1.2 e memória; produzido pelo Squad Lead após indisponibilidade do solution-architect (apd-002); revisão independente do reviewer pendente (gate) | Squad Lead |
 | 1.1 | 2026-09-22 | Incorpora revisão independente do reviewer (APROVADO COM CONDIÇÕES): P-ARC-001 (transporte TLS/HTTP decisão obrigatória pré-autenticação), P-ARC-003 (mecanismo otimista especificado), P-ARC-004 (anexos + restauração no teste), P-ARC-005 (lockout/sessão), P-ARC-006 (CSRF/SameSite), P-ARC-007 (política de exclusão do não-conferido), P-ARC-008 (alvo de backup independente), P-ARC-009/010 (rastreabilidade/mapeamento BL), P-ARC-011 (Flask/Django recomendado), P-ARC-012 (editorial + limite de imutabilidade); novas pendências PEN-ARC-010; gate APROVADO COM PENDÊNCIAS CONTROLADAS | Squad Lead + reviewer |
 | 1.2 | 2026-09-22 | Stack **confirmada: C#/.NET (ASP.NET Core + Razor Pages)** (fluência do dev — EVD-016/017 resolvida) e transporte **definido: HTTP em LAN interna** (PEN-ARC-001 encerrado); ADR-010/DR-0012/§13/§18 atualizados; memórias candidatas §24 e evidências atualizadas; gate reforça liberação de implementação (restam carry-over UX/PEN-PB-003 e produção PEN-ARC-003/005) | Squad Lead (aplicação das respostas complementares do solicitante) |
+| 1.3 | 2026-09-22 | Rede confirmada: **Wi-Fi próprio protegido (WPA2/WPA3, sem terceiros — EVD-019)**; P-ARC-001 mantido (HTTP em LAN); RSK-ARC-004 rebaixado para Baixa | Squad Lead (aplicação da resposta do solicitante) |

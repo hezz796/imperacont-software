@@ -23,7 +23,7 @@ Para o MVP 1 do ImperaCont, a direção arquitetural adotada é:
 5. **Concorrência com WAL + transações curtas + busy timeout + controle otimista** (`version`/`updated_at`, `WHERE version = ?`, `BEGIN IMMEDIATE`, lote com transação curta por item) — especificação obrigatória antes dos módulos de escrita (PEN-ARC-010; detalhado no ARC-001).
 6. **Backup = cópia consistente do banco (VACUUM INTO/snapshot) + cópia de anexos (gravação atômica) + validação semanal com restauração testada, incluindo 1 anexo**, em alvo independente do PC-base.
 7. **Stack confirmada (2026-09-22): C#/.NET — ASP.NET Core com Razor Pages** (fluência mais forte do dev único; nativo Windows on-premise; segurança padrão forte; templates server-side).
-8. **Transporte confirmado (2026-09-22): HTTP em LAN interna confiável** — cookie sem `Secure`, com `HttpOnly` + `SameSite`, e controles compensatórios (ACL do SO, acesso físico, rede interna dedicada); revisar — adotando TLS self-signed — se houver Wi-Fi aberto/compartilhado.
+8. **Transporte confirmado (2026-09-22): HTTP em LAN interna confiável** — cookie sem `Secure`, com `HttpOnly` + `SameSite`, e controles compensatórios (ACL do SO, acesso físico, rede interna dedicada). **Rede do escritório confirmada como Wi-Fi próprio protegido (WPA2/WPA3), sem terceiros (EVD-019)** — situação aceitável para HTTP; revisar — adotando TLS self-signed — apenas se surgir Wi-Fi aberto/compartilhado.
 
 ## Contexto
 
